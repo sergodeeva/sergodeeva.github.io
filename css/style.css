@@ -351,8 +351,8 @@
 .content h6 {
   font-size: 0.9rem;
   font-weight: normal;
-  color: #ccc;
-  border-bottom: 1px dashed #ccc;
+  color: #8c8c8c;
+  border-bottom: 1px dashed #8c8c8c;
   display: inline;
   text-decoration: none;
 }
@@ -364,7 +364,7 @@
   margin-bottom: 0.5rem;
 }
 .content hr {
-  border: 1px dashed #ccc;
+  border: 1px dashed #8c8c8c;
 }
 .content strong {
   font-weight: bold;
@@ -573,8 +573,6 @@ body {
   background-repeat: no-repeat;
   background-size: 50px 50px;
   border-radius: 5px;
-  -webkit-filter: grayscale(100%);
-  filter: grayscale(100%);
 }
 #header #nav {
   letter-spacing: 0.01em;
@@ -621,7 +619,6 @@ body {
 }
 @media screen and (max-width: 480px) {
   #header #title {
-    padding-top: 9px;
     padding-bottom: 9px;
   }
   #header #nav ul a:hover {
@@ -634,8 +631,8 @@ body {
   #header #nav ul li.icon {
     display: inline-block;
     position: absolute;
-    top: 55px;
-    right: 1rem;
+    top: 20px;
+    right: 0rem;
   }
   #header #nav ul.responsive li {
     display: block;
@@ -762,6 +759,7 @@ body {
   clear: both;
   text-align: right;
   padding-top: 1rem;
+  padding-right: 2rem;
 }
 #header-post #share li {
   margin: 0;
@@ -1047,7 +1045,7 @@ article header .meta {
   margin-bottom: 1rem;
 }
 article header .meta * {
-  color: #ccc;
+  color: #8c8c8c;
   font-size: 0.85rem;
 }
 article header .author {
@@ -1071,7 +1069,6 @@ article .content img,
 article .content video {
   max-width: 100%;
   height: auto;
-  display: block;
   margin: auto;
 }
 article .content .video-container {
@@ -1278,7 +1275,7 @@ article .content .caption {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  border: solid 1px #ccc;
+  border: solid 1px #8c8c8c;
   padding: 4px 7px;
   outline: none;
   -webkit-appearance: none;
