@@ -469,6 +469,12 @@ body {
   -webkit-hyphens: manual;
   hyphens: manual;
 }
+.content .highlight a {
+  color: #dccf8f;
+}
+.content .highlight a:hover {
+  background-image: none;
+}
 .content a {
   text-decoration: none;
   color: #383838;
