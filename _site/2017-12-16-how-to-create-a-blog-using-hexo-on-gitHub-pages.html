@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.3.0 -->
+<title>How to create a blog using Hexo on GitHub Pages | Natalya Kosenko’s Blog</title>
+<meta property="og:title" content="How to create a blog using Hexo on GitHub Pages" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I was originally planning to create a blog using Create React App. It was extremely easy to set up create-react-app, but “the devil is in the details”. So I decided to use Hexo framework instead, as did not want to spend much time googling stuff and figuring out the details." />
+<meta property="og:description" content="I was originally planning to create a blog using Create React App. It was extremely easy to set up create-react-app, but “the devil is in the details”. So I decided to use Hexo framework instead, as did not want to spend much time googling stuff and figuring out the details." />
+<link rel="canonical" href="http://localhost:4000/2017-12-16-how-to-create-a-blog-using-hexo-on-gitHub-pages" />
+<meta property="og:url" content="http://localhost:4000/2017-12-16-how-to-create-a-blog-using-hexo-on-gitHub-pages" />
+<meta property="og:site_name" content="Natalya Kosenko’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-12-16T17:01:36+08:00" />
+<script type="application/ld+json">
+{"name":null,"description":"I was originally planning to create a blog using Create React App. It was extremely easy to set up create-react-app, but “the devil is in the details”. So I decided to use Hexo framework instead, as did not want to spend much time googling stuff and figuring out the details.","url":"http://localhost:4000/2017-12-16-how-to-create-a-blog-using-hexo-on-gitHub-pages","headline":"How to create a blog using Hexo on GitHub Pages","dateModified":"2017-12-16T17:01:36+08:00","datePublished":"2017-12-16T17:01:36+08:00","sameAs":null,"@type":"BlogPosting","author":null,"image":null,"publisher":null,"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2017-12-16-how-to-create-a-blog-using-hexo-on-gitHub-pages"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="shortcut icon" href="/assets/favicon.png">
+  <script src="https://use.fontawesome.com/9f9cb26d6f.js"></script>
+
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-37473492-6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-37473492-6');
+  </script>
+  
+</head>
+  <body>
+    <div class="nav">
+  <a class="logo"></a>
+  <ul class="navbar-nav">
+    <li><a href="/">Home</a></li>
+    <li><a href="/about">About</a></li>
+  </ul>
+</div>
+<section class="page-header">
+  
+    <h1 class="project-name">How to create a blog using Hexo on GitHub Pages</h1>
+     
+  
+  
+</section>
+    <section class="main-content">
+      <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <p class="post-meta">
+      <time datetime="2017-12-16T17:01:36+08:00" itemprop="datePublished">
+        
+        Dec 16, 2017
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>I was originally planning to create a blog using <a href="https://github.com/facebookincubator/create-react-app">Create React App</a>. It was extremely easy to set up <code class="highlighter-rouge">create-react-app</code>, but “the devil is in the details”. So I decided to use Hexo framework instead, as did not want to spend much time googling stuff and figuring out the details.</p>
+
+<p>Before I started, I did not have any experience with <code class="highlighter-rouge">hexo</code>, and had no idea about <code class="highlighter-rouge">node</code> and <code class="highlighter-rouge">nvm</code>. So below an instruction for beginners :)</p>
+
+<h2 id="install-git">Install Git</h2>
+<p>Install Git if you don’t have it yet (<a href="https://www.atlassian.com/git/tutorials/install-git">installation instructions</a>).</p>
+
+<h2 id="install-nvm-node-version-manager">Install nvm (Node Version Manager)</h2>
+
+<figure class="highlight"><pre><code class="language-terminal" data-lang="terminal"><span class="go">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash</span></code></pre></figure>
+
+<p>If you get <code class="highlighter-rouge">nvm: command not found</code> after running the install script, try solutions described <a href="https://github.com/creationix/nvm#installation">here</a>. In my case I solved the problem with <code class="highlighter-rouge">nvm</code> by adding this line of code into <code class="highlighter-rouge">~/.bash_profile</code>file:</p>
+
+<figure class="highlight"><pre><code class="language-terminal" data-lang="terminal"><span class="go">source ~/.bashrc</span></code></pre></figure>
+
+<h2 id="install-nodejs">Install Node.js</h2>
+<p>Hexo framework is powered by <code class="highlighter-rouge">node.js</code>, that is why you need to have <code class="highlighter-rouge">node</code> installed before proceeding with Hexo installation.</p>
+
+<figure class="highlight"><pre><code class="language-terminal" data-lang="terminal"><span class="go">nvm install node</span></code></pre></figure>
+
+<h2 id="install-hexo">Install Hexo</h2>
+
+<figure class="highlight"><pre><code class="language-terminal" data-lang="terminal"><span class="go">npm install -g hexo-cli</span></code></pre></figure>
+
+<h2 id="create-blog">Create blog</h2>
+<p>Suppose you want to create your blog in a local folder <code class="highlighter-rouge">my-blog</code>. Run one by one the following commands:</p>
+
+<figure class="highlight"><pre><code class="language-terminal" data-lang="terminal"><span class="go">hexo init my-blog<br data-jekyll-commonmark-ghpages="" />cd my-blog<br data-jekyll-commonmark-ghpages="" /></span><span class="gp">hexo generate #</span> to generate the blog<br data-jekyll-commonmark-ghpages="" /><span class="gp">hexo server #</span> to start hexo server</code></pre></figure>
+
+<p>Voila! The blog is ready, check it out at http://localhost:4000/.</p>
+
+<h2 id="configure-blog-settings">Configure blog settings</h2>
+<p>Now you can start configuring your blog using <code class="highlighter-rouge">_config.yml</code> file in the root of your blog’s folder. There are lots of settings can be configured (<a href="https://hexo.io/docs/configuration.html">read more about it</a>). To start with, you can configure some personal information as did I:</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># Site</span><br data-jekyll-commonmark-ghpages="" /><span class="na">title</span><span class="pi">:</span> <span class="s">Natalya Kosenko's Blog</span><br data-jekyll-commonmark-ghpages="" /><span class="na">subtitle</span><span class="pi">:</span><br data-jekyll-commonmark-ghpages="" /><span class="na">description</span><span class="pi">:</span><br data-jekyll-commonmark-ghpages="" /><span class="na">author</span><span class="pi">:</span> <span class="s">Natalya Kosenko</span><br data-jekyll-commonmark-ghpages="" /><span class="na">language</span><span class="pi">:</span> <span class="s">en</span><br data-jekyll-commonmark-ghpages="" /><span class="na">timezone</span><span class="pi">:</span> <span class="s">Asia/Singapore</span></code></pre></figure>
+
+<h2 id="change-theme">Change theme</h2>
+<p>Now it is time to beautify your blog. You can choose one of a few dozens free themes available <a href="https://hexo.io/themes/">here</a>. My choice was <code class="highlighter-rouge">cactus-white</code> that is based on a <a href="https://github.com/probberechts/cactus-dark">cactus-dark</a> theme. Below are a few commands you need to run one by one in the Terminal in order to switch theme from default one to the <code class="highlighter-rouge">cactus-white</code>:</p>
+
+<figure class="highlight"><pre><code class="language-terminal" data-lang="terminal"><span class="go">git clone git@github.com:sergodeeva/cactus-white.git themes/cactus-white<br data-jekyll-commonmark-ghpages="" />npm install hexo-pagination --save</span></code></pre></figure>
+
+<p>After you installed a new theme, you need to change the <code class="highlighter-rouge">theme</code> property in the <code class="highlighter-rouge">_config.yml</code> file:</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># theme: landscape</span><br data-jekyll-commonmark-ghpages="" /><span class="na">theme</span><span class="pi">:</span> <span class="s">cactus-white</span></code></pre></figure>
+
+<p>To see the changes at http://localhost:4000/, you need to re-generate blog by running <code class="highlighter-rouge">hexo generate</code>, and then restart the hexo server (stop it and then run <code class="highlighter-rouge">hexo server</code>).</p>
+
+<h2 id="write-a-new-post">Write a new post</h2>
+<p>To create a new post or a new page, you can use the following commands:</p>
+
+<figure class="highlight"><pre><code class="language-terminal" data-lang="terminal"><span class="gp">hexo new post &lt;title&gt;</span> <span class="c"># to create a new post</span><br data-jekyll-commonmark-ghpages="" /><span class="gp">hexo new page &lt;title&gt;</span> <span class="c"># to create a new page</span><br data-jekyll-commonmark-ghpages="" /><span class="gp">hexo new draft &lt;title&gt;</span> <span class="c"># to create a new draft</span><br data-jekyll-commonmark-ghpages="" /><span class="gp">hexo new post "Hello world" #</span> example</code></pre></figure>
+
+<p>A file with .md extension will be created in a <code class="highlighter-rouge">source</code> folder. You can write your post using <a href="https://daringfireball.net/projects/markdown/syntax">markdown</a> - lightweight markup language with plain text formatting syntax.</p>
+
+<h2 id="deploy-to-github-pages">Deploy to GitHub Pages</h2>
+<p>Make sure you have created a GitHub repository with a name <code class="highlighter-rouge">username.github.io</code>. For example, my repository is <code class="highlighter-rouge">sergodeeva.github.io</code>.
+Install hexo deployer plugin:</p>
+
+<figure class="highlight"><pre><code class="language-terminal" data-lang="terminal"><span class="go">npm install hexo-deployer-git --save</span></code></pre></figure>
+
+<p>Once the plugin is installed, change deployment settings in the <code class="highlighter-rouge">_config.yml</code>file (replace ‘username’ with your GitHub username):</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">deploy</span><span class="pi">:</span><br data-jekyll-commonmark-ghpages="" />  <span class="na">type</span><span class="pi">:</span> <span class="s">git</span><br data-jekyll-commonmark-ghpages="" />  <span class="na">repo</span><span class="pi">:</span> <span class="s">git@github.com:username/username.github.io.git</span><br data-jekyll-commonmark-ghpages="" />  <span class="na">branch</span><span class="pi">:</span> <span class="s">master</span></code></pre></figure>
+
+<p>Deploy the blog to GitHub pages using this command:</p>
+
+<figure class="highlight"><pre><code class="language-terminal" data-lang="terminal"><span class="gp">hexo d -g #</span> shortcut <span class="k">for</span> <span class="sb">`</span>hexo generate<span class="sb">`</span> and <span class="sb">`</span>hexo deploy<span class="sb">`</span></code></pre></figure>
+
+<p>Done, your blog is now available at <code class="highlighter-rouge">http://username.github.io</code> page.</p>
+
+<p>The whole process took me a few hours (90% of that time I spent choosing a blog theme).</p>
+
+  </div>
+
+  
+    
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/2017-12-16-how-to-create-a-blog-using-hexo-on-gitHub-pages';
+      this.page.identifier = 'http://localhost:4000/2017-12-16-how-to-create-a-blog-using-hexo-on-gitHub-pages';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://sergodeeva.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+  
+</article>
+      <footer class="site-footer">
+  <ul class="fa-ul">
+    
+      <li>
+        <a href="https://github.com/sergodeeva" target="_blank">
+          <i class="fa fa-github-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+    
+    <li>
+      <a href="https://linkedin.com/in/natalyakosenko" target="_blank">
+        <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+    
+      <li>
+        <a href="https://www.facebook.com/natalya.kosenko" target="_blank">
+          <i class="fa fa-facebook-square" aria-hidden="true"></i>
+         </a>
+      </li>
+    
+    <li>
+        <a href="/feed.xml" target="_blank">
+          <i class="fa fa-rss-square" aria-hidden="true"></i>
+         </a>
+      </li>
+  </ul>
+  <span class="site-footer-credits">Copyright © 2017-2018 Natalya Kosenko</span>
+</footer>
+    </section>
+  </body>
+</html>
