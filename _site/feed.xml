@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-12-25T12:26:49+08:00</updated><id>http://localhost:4000/</id><title type="html">Natalya Kosenko’s Blog</title><subtitle>From Manager to Developer.</subtitle><entry><title type="html">How to switch Jekyll theme on GitHub Pages site</title><link href="http://localhost:4000/2017-12-23-how-to-switch-jekyll-theme-on-github-pages-site" rel="alternate" type="text/html" title="How to switch Jekyll theme on GitHub Pages site" /><published>2017-12-23T14:04:12+08:00</published><updated>2017-12-23T14:04:12+08:00</updated><id>http://localhost:4000/how-to-switch-jekyll-theme-on-github-pages-site</id><content type="html" xml:base="http://localhost:4000/2017-12-23-how-to-switch-jekyll-theme-on-github-pages-site">&lt;p&gt;A new Jekyll site out of the box uses a default gem-based theme called &lt;code class=&quot;highlighter-rouge&quot;&gt;Minima&lt;/code&gt;. However you can choose from one of many custom themes supported by GitHub Pages: &lt;a href=&quot;https://pages.github.com/themes/&quot;&gt;official Jekyll themes&lt;/a&gt;, as well as &lt;a href=&quot;https://github.com/topics/jekyll-theme&quot;&gt;open source Jekyll themes&lt;/a&gt; hosted on GitHub.&lt;/p&gt;
+
+&lt;p&gt;I was recently switching a theme for my blog from &lt;code class=&quot;highlighter-rouge&quot;&gt;Minima&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;Cayman&lt;/code&gt; and found it not very obvious. Although there are a lot of instructions available on the Internet, I spent a couple of hours dealing with various errors during the switch. Thus I decided to write a post about switching Jekyll theme, hope it will help you to save some time.&lt;/p&gt;
+
+&lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h2&gt;
+&lt;p&gt;Make sure you have &lt;code class=&quot;highlighter-rouge&quot;&gt;Jekyll&lt;/code&gt; installed (if not, follow the &lt;a href=&quot;https://jekyllrb.com/docs/installation/&quot;&gt;installation instructions&lt;/a&gt;).
+As we are going to use GitHub Pages, make sure you have created a GitHub repository with a name &lt;code class=&quot;highlighter-rouge&quot;&gt;username.github.io&lt;/code&gt;. For example, my repository is &lt;code class=&quot;highlighter-rouge&quot;&gt;sergodeeva.github.io&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;update-gems&quot;&gt;Update gems&lt;/h2&gt;
+&lt;p&gt;Navigate to &lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt; in the root directory of your &lt;code class=&quot;highlighter-rouge&quot;&gt;Jekyll&lt;/code&gt; site, remove gem &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll&lt;/code&gt; and add &lt;code class=&quot;highlighter-rouge&quot;&gt;github-pages&lt;/code&gt; gem:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# gem &quot;jekyll&quot;, &quot;~&amp;gt; 3.6.2&quot;&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;github-pages&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;group: :jekyll_plugins&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Run &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle update&lt;/code&gt; command in Terminal to update all gems.&lt;/p&gt;
+
+&lt;h2 id=&quot;create-layouts&quot;&gt;Create layouts&lt;/h2&gt;
+&lt;p&gt;Default Jekyll theme &lt;code class=&quot;highlighter-rouge&quot;&gt;Minima&lt;/code&gt; has 4 layouts that are used on different pages of your blog:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;default.html&lt;/code&gt; - The base layout that lays the foundation for subsequent layouts.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;home.html&lt;/code&gt; — The layout for your home-page.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;page.html&lt;/code&gt; — The layout for pages such as About, Contacts etc.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;post.html&lt;/code&gt; — The layout for your blog posts.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Whenever you switch to a new theme, the new theme might have a different set of layouts. For example, &lt;code class=&quot;highlighter-rouge&quot;&gt;Cayman&lt;/code&gt; theme that I switched to only had &lt;code class=&quot;highlighter-rouge&quot;&gt;default.html&lt;/code&gt; layout. That is why after a switch from &lt;code class=&quot;highlighter-rouge&quot;&gt;Minima&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;Cayman&lt;/code&gt; there was a blank page instead of my blog’s homepage (because &lt;code class=&quot;highlighter-rouge&quot;&gt;home.html&lt;/code&gt; layout was missing).&lt;/p&gt;
+
+&lt;p&gt;To solve issue with missing layouts, in your blog’s root directory create a &lt;code class=&quot;highlighter-rouge&quot;&gt;_layouts&lt;/code&gt; folder, and inside that folder create 4 layout files. &lt;a href=&quot;&quot;&gt;Here&lt;/a&gt; is an example of my layouts.&lt;/p&gt;
+
+&lt;h2 id=&quot;create-includes&quot;&gt;Create includes&lt;/h2&gt;
+&lt;p&gt;If you have some code snippets that you want to include in multiple layouts of your site, save the snippets as include files and insert them where required, by using the &lt;code class=&quot;highlighter-rouge&quot;&gt;include&lt;/code&gt; tag. Using &lt;code class=&quot;highlighter-rouge&quot;&gt;includes&lt;/code&gt; also improves the readability of your layouts’ code.&lt;/p&gt;
+
+&lt;p&gt;Create &lt;code class=&quot;highlighter-rouge&quot;&gt;_includes&lt;/code&gt; folder in the root directory of your site, and place includes files inside. For example, I created the following includes: &lt;code class=&quot;highlighter-rouge&quot;&gt;head.html&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;header.html&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;footer.html&lt;/code&gt;. &lt;a href=&quot;&quot;&gt;Here&lt;/a&gt; is an example of my includes.&lt;/p&gt;
+
+&lt;h2 id=&quot;update-_configyml&quot;&gt;Update _config.yml&lt;/h2&gt;
+&lt;p&gt;Now you need to change theme in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;na&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;jekyll-theme-cayman&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Apart of that you might also need to add some additional settings to the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file - settings, that used by the new theme that you are switching to.
+For example, for &lt;code class=&quot;highlighter-rouge&quot;&gt;Cayman&lt;/code&gt; theme I needed to add &lt;code class=&quot;highlighter-rouge&quot;&gt;repository: sergodeeva/site&lt;/code&gt; to my &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;customize-css-styles&quot;&gt;Customize CSS styles&lt;/h2&gt;
+&lt;p&gt;Once you done with updating &lt;code class=&quot;highlighter-rouge&quot;&gt;layouts&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;includes&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;, run a development server on your local machine:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-terminal&quot; data-lang=&quot;terminal&quot;&gt;&lt;span class=&quot;go&quot;&gt;bundle exec jekyll serve&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Now you should be able to browse your blog at &lt;code class=&quot;highlighter-rouge&quot;&gt;http://localhost:4000/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Probably after you see the blog, you will be tempted to modify some colors, fonts or other CSS properties. By default Jekyll is looking up at theme gem’s CSS files. However you can easily override them by creating a file &lt;code class=&quot;highlighter-rouge&quot;&gt;assets/css/style.scss&lt;/code&gt; in the root directory of your site.&lt;/p&gt;
+
+&lt;p&gt;In the top of the file, add the follwing content:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;k&quot;&gt;@import&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;jekyll-theme-cayman&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;After that you can add any custom CSS (or Sass, including imports) immediately after the &lt;code class=&quot;highlighter-rouge&quot;&gt;@import&lt;/code&gt; line.&lt;/p&gt;
+
+&lt;p&gt;See my style.scss and my _sass.&lt;/p&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap up&lt;/h2&gt;
+&lt;p&gt;This post was about getting you started with Jekyll themes, but there’s a lot that you can do if you are willing to spend some time to learn. Take a look at the &lt;a href=&quot;https://jekyllrb.com/docs/home/&quot;&gt;official Jekyll documentation&lt;/a&gt; for more information.&lt;/p&gt;
+
+&lt;p&gt;I hope you found this article useful. If you are trying to switch Jekyll theme using the steps mentioned above and get stuck anywhere, please ask a question in the comments below.&lt;/p&gt;</content><author><name></name></author><summary type="html">A new Jekyll site out of the box uses a default gem-based theme called Minima. However you can choose from one of many custom themes supported by GitHub Pages: official Jekyll themes, as well as open source Jekyll themes hosted on GitHub.</summary></entry><entry><title type="html">How to create a blog using Hexo on GitHub Pages</title><link href="http://localhost:4000/2017-12-16-how-to-create-a-blog-using-hexo-on-gitHub-pages" rel="alternate" type="text/html" title="How to create a blog using Hexo on GitHub Pages" /><published>2017-12-16T17:01:36+08:00</published><updated>2017-12-16T17:01:36+08:00</updated><id>http://localhost:4000/how-to-create-a-blog-using-hexo-on-gitHub-pages</id><content type="html" xml:base="http://localhost:4000/2017-12-16-how-to-create-a-blog-using-hexo-on-gitHub-pages">&lt;p&gt;I was originally planning to create a blog using &lt;a href=&quot;https://github.com/facebookincubator/create-react-app&quot;&gt;Create React App&lt;/a&gt;. It was extremely easy to set up &lt;code class=&quot;highlighter-rouge&quot;&gt;create-react-app&lt;/code&gt;, but “the devil is in the details”. So I decided to use Hexo framework instead, as did not want to spend much time googling stuff and figuring out the details.&lt;/p&gt;
+
+&lt;p&gt;Before I started, I did not have any experience with &lt;code class=&quot;highlighter-rouge&quot;&gt;hexo&lt;/code&gt;, and had no idea about &lt;code class=&quot;highlighter-rouge&quot;&gt;node&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;nvm&lt;/code&gt;. So below an instruction for beginners :)&lt;/p&gt;
+
+&lt;h2 id=&quot;install-git&quot;&gt;Install Git&lt;/h2&gt;
+&lt;p&gt;Install Git if you don’t have it yet (&lt;a href=&quot;https://www.atlassian.com/git/tutorials/install-git&quot;&gt;installation instructions&lt;/a&gt;).&lt;/p&gt;
+
+&lt;h2 id=&quot;install-nvm-node-version-manager&quot;&gt;Install nvm (Node Version Manager)&lt;/h2&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-terminal&quot; data-lang=&quot;terminal&quot;&gt;&lt;span class=&quot;go&quot;&gt;curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;If you get &lt;code class=&quot;highlighter-rouge&quot;&gt;nvm: command not found&lt;/code&gt; after running the install script, try solutions described &lt;a href=&quot;https://github.com/creationix/nvm#installation&quot;&gt;here&lt;/a&gt;. In my case I solved the problem with &lt;code class=&quot;highlighter-rouge&quot;&gt;nvm&lt;/code&gt; by adding this line of code into &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.bash_profile&lt;/code&gt;file:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-terminal&quot; data-lang=&quot;terminal&quot;&gt;&lt;span class=&quot;go&quot;&gt;source ~/.bashrc&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;install-nodejs&quot;&gt;Install Node.js&lt;/h2&gt;
+&lt;p&gt;Hexo framework is powered by &lt;code class=&quot;highlighter-rouge&quot;&gt;node.js&lt;/code&gt;, that is why you need to have &lt;code class=&quot;highlighter-rouge&quot;&gt;node&lt;/code&gt; installed before proceeding with Hexo installation.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-terminal&quot; data-lang=&quot;terminal&quot;&gt;&lt;span class=&quot;go&quot;&gt;nvm install node&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;install-hexo&quot;&gt;Install Hexo&lt;/h2&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-terminal&quot; data-lang=&quot;terminal&quot;&gt;&lt;span class=&quot;go&quot;&gt;npm install -g hexo-cli&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;create-blog&quot;&gt;Create blog&lt;/h2&gt;
+&lt;p&gt;Suppose you want to create your blog in a local folder &lt;code class=&quot;highlighter-rouge&quot;&gt;my-blog&lt;/code&gt;. Run one by one the following commands:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-terminal&quot; data-lang=&quot;terminal&quot;&gt;&lt;span class=&quot;go&quot;&gt;hexo init my-blog&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;cd my-blog&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;/span&gt;&lt;span class=&quot;gp&quot;&gt;hexo generate #&lt;/span&gt; to generate the blog&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;gp&quot;&gt;hexo server #&lt;/span&gt; to start hexo server&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Voila! The blog is ready, check it out at http://localhost:4000/.&lt;/p&gt;
+
+&lt;h2 id=&quot;configure-blog-settings&quot;&gt;Configure blog settings&lt;/h2&gt;
+&lt;p&gt;Now you can start configuring your blog using &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file in the root of your blog’s folder. There are lots of settings can be configured (&lt;a href=&quot;https://hexo.io/docs/configuration.html&quot;&gt;read more about it&lt;/a&gt;). To start with, you can configure some personal information as did I:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# Site&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Natalya Kosenko's Blog&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;na&quot;&gt;subtitle&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;na&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;na&quot;&gt;author&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Natalya Kosenko&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;na&quot;&gt;language&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;en&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;na&quot;&gt;timezone&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Asia/Singapore&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;change-theme&quot;&gt;Change theme&lt;/h2&gt;
+&lt;p&gt;Now it is time to beautify your blog. You can choose one of a few dozens free themes available &lt;a href=&quot;https://hexo.io/themes/&quot;&gt;here&lt;/a&gt;. My choice was &lt;code class=&quot;highlighter-rouge&quot;&gt;cactus-white&lt;/code&gt; that is based on a &lt;a href=&quot;https://github.com/probberechts/cactus-dark&quot;&gt;cactus-dark&lt;/a&gt; theme. Below are a few commands you need to run one by one in the Terminal in order to switch theme from default one to the &lt;code class=&quot;highlighter-rouge&quot;&gt;cactus-white&lt;/code&gt;:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-terminal&quot; data-lang=&quot;terminal&quot;&gt;&lt;span class=&quot;go&quot;&gt;git clone git@github.com:sergodeeva/cactus-white.git themes/cactus-white&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;npm install hexo-pagination --save&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;After you installed a new theme, you need to change the &lt;code class=&quot;highlighter-rouge&quot;&gt;theme&lt;/code&gt; property in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# theme: landscape&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;na&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cactus-white&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;To see the changes at http://localhost:4000/, you need to re-generate blog by running &lt;code class=&quot;highlighter-rouge&quot;&gt;hexo generate&lt;/code&gt;, and then restart the hexo server (stop it and then run &lt;code class=&quot;highlighter-rouge&quot;&gt;hexo server&lt;/code&gt;).&lt;/p&gt;
+
+&lt;h2 id=&quot;write-a-new-post&quot;&gt;Write a new post&lt;/h2&gt;
+&lt;p&gt;To create a new post or a new page, you can use the following commands:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-terminal&quot; data-lang=&quot;terminal&quot;&gt;&lt;span class=&quot;gp&quot;&gt;hexo new post &amp;lt;title&amp;gt;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# to create a new post&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;gp&quot;&gt;hexo new page &amp;lt;title&amp;gt;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# to create a new page&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;gp&quot;&gt;hexo new draft &amp;lt;title&amp;gt;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# to create a new draft&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;gp&quot;&gt;hexo new post &quot;Hello world&quot; #&lt;/span&gt; example&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;A file with .md extension will be created in a &lt;code class=&quot;highlighter-rouge&quot;&gt;source&lt;/code&gt; folder. You can write your post using &lt;a href=&quot;https://daringfireball.net/projects/markdown/syntax&quot;&gt;markdown&lt;/a&gt; - lightweight markup language with plain text formatting syntax.&lt;/p&gt;
+
+&lt;h2 id=&quot;deploy-to-github-pages&quot;&gt;Deploy to GitHub Pages&lt;/h2&gt;
+&lt;p&gt;Make sure you have created a GitHub repository with a name &lt;code class=&quot;highlighter-rouge&quot;&gt;username.github.io&lt;/code&gt;. For example, my repository is &lt;code class=&quot;highlighter-rouge&quot;&gt;sergodeeva.github.io&lt;/code&gt;.
+Install hexo deployer plugin:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-terminal&quot; data-lang=&quot;terminal&quot;&gt;&lt;span class=&quot;go&quot;&gt;npm install hexo-deployer-git --save&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Once the plugin is installed, change deployment settings in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;file (replace ‘username’ with your GitHub username):&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;na&quot;&gt;deploy&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;git&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;na&quot;&gt;repo&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;git@github.com:username/username.github.io.git&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;na&quot;&gt;branch&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Deploy the blog to GitHub pages using this command:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-terminal&quot; data-lang=&quot;terminal&quot;&gt;&lt;span class=&quot;gp&quot;&gt;hexo d -g #&lt;/span&gt; shortcut &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;hexo generate&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; and &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;hexo deploy&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Done, your blog is now available at &lt;code class=&quot;highlighter-rouge&quot;&gt;http://username.github.io&lt;/code&gt; page.&lt;/p&gt;
+
+&lt;p&gt;The whole process took me a few hours (90% of that time I spent choosing a blog theme).&lt;/p&gt;</content><author><name></name></author><summary type="html">I was originally planning to create a blog using Create React App. It was extremely easy to set up create-react-app, but “the devil is in the details”. So I decided to use Hexo framework instead, as did not want to spend much time googling stuff and figuring out the details.</summary></entry></feed>
