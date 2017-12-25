@@ -14,6 +14,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: Natalya Kosenko's Blog
+author: Natalya Kosenko
 email: sergodeeva@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   From Manager to Developer.
@@ -25,7 +26,7 @@ facebook_username:  natalya.kosenko
 linkedin_username:  natalyakosenko
 repository: sergodeeva/sergodeeva.github.io
 permalink: /:year-:month-:day-:title
-google_analytics: UA-37473492-6
+google_analytics: UA-37473492-7
 
 disqus:
     shortname: sergodeeva

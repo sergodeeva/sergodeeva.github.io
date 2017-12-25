@@ -10,13 +10,6 @@
   <script src="https://use.fontawesome.com/9f9cb26d6f.js"></script>
 
   {% if site.google_analytics %}
-  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', '{{ site.google_analytics }}');
-  </script>
+    {% include google-analytics.html %}
   {% endif %}
 </head>
