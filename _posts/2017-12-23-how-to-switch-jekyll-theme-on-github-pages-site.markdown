@@ -32,12 +32,12 @@ Default Jekyll theme `Minima` has 4 layouts that are used on different pages of 
 
 Whenever you switch to a new theme, the new theme might have a different set of layouts. For example, `Cayman` theme that I switched to only had `default.html` layout. That is why after a switch from `Minima` to `Cayman` there was a blank page instead of my blog's homepage (because `home.html` layout was missing).
 
-To solve issue with missing layouts, in your blog's root directory create a `_layouts` folder, and inside that folder create 4 layout files. [Here]() is an example of my layouts.
+To solve issue with missing layouts, in your blog's root directory create a `_layouts` folder, and inside that folder create 4 layout files. [Here](https://github.com/sergodeeva/sergodeeva.github.io/tree/master/_layouts) is an example of my layouts.
 
 ## Create includes
 If you have some code snippets that you want to include in multiple layouts of your site, save the snippets as include files and insert them where required, by using the `include` tag. Using `includes` also improves the readability of your layouts' code.
 
-Create `_includes` folder in the root directory of your site, and place includes files inside. For example, I created the following includes: `head.html`, `header.html`, `footer.html`. [Here]() is an example of my includes.
+Create `_includes` folder in the root directory of your site, and place includes files inside. For example, I created the following includes: `head.html`, `header.html`, `footer.html`. [Here](https://github.com/sergodeeva/sergodeeva.github.io/tree/master/_includes) is an example of my includes.
 
 ## Update _config.yml
 Now you need to change theme in the `_config.yml` file:
@@ -46,7 +46,7 @@ theme: jekyll-theme-cayman
 {% endhighlight %}
 
 Apart of that you might also need to add some additional settings to the `_config.yml` file - settings, that used by the new theme that you are switching to.
-For example, for `Cayman` theme I needed to add `repository: sergodeeva/site` to my `_config.yml`.
+For example, for `Cayman` theme I needed to add `repository: sergodeeva/sergodeeva.github.io` to my `_config.yml`.
 
 ## Customize CSS styles
 Once you done with updating `layouts`, `includes` and `_config.yml`, run a development server on your local machine:
@@ -56,9 +56,9 @@ bundle exec jekyll serve
 
 Now you should be able to browse your blog at `http://localhost:4000/`.
 
-Probably after you see the blog, you will be tempted to modify some colors, fonts or other CSS properties. By default Jekyll is looking up at theme gem's CSS files. However you can easily override them by creating a file `assets/css/style.scss` in the root directory of your site.
+After you see the blog, you will probably be tempted to modify some colors, fonts or other CSS properties. By default Jekyll is looking up at theme gem's CSS files. However you can easily override them by creating a file `assets/css/style.scss` in the root directory of your site.
 
-In the top of the file, add the follwing content:
+In the top of the file, add the following content:
 {% highlight css %}
 ---
 ---
@@ -68,7 +68,7 @@ In the top of the file, add the follwing content:
 
 After that you can add any custom CSS (or Sass, including imports) immediately after the `@import` line.
 
-See my style.scss and my _sass.
+Alternatively, you can copy `scss` files from the theme's GitHub repository and place them in the `_sass` folder of your site. [Here](https://github.com/sergodeeva/sergodeeva.github.io/tree/master/_sass) is an example of my `scss` files. You can beautify your site by modifying these `scss` files.
 
 ## Wrap up
 This post was about getting you started with Jekyll themes, but there’s a lot that you can do if you are willing to spend some time to learn. Take a look at the [official Jekyll documentation](https://jekyllrb.com/docs/home/) for more information.

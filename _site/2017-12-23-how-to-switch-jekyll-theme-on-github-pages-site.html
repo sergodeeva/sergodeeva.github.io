@@ -22,7 +22,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#157878">
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="/assets/css/style.css?v=9b4732f22de8545e84cddb55dd41b3e75f6bf497">
+  <link rel="stylesheet" href="/assets/css/style.css?v=399bb1df152fff1d808ec1084f41369bde55e25b">
   <link rel="shortcut icon" href="/assets/favicon.png">
   <script src="https://use.fontawesome.com/9f9cb26d6f.js"></script>
 
@@ -93,12 +93,12 @@ As we are going to use GitHub Pages, make sure you have created a GitHub reposit
 
 <p>Whenever you switch to a new theme, the new theme might have a different set of layouts. For example, <code class="highlighter-rouge">Cayman</code> theme that I switched to only had <code class="highlighter-rouge">default.html</code> layout. That is why after a switch from <code class="highlighter-rouge">Minima</code> to <code class="highlighter-rouge">Cayman</code> there was a blank page instead of my blog’s homepage (because <code class="highlighter-rouge">home.html</code> layout was missing).</p>
 
-<p>To solve issue with missing layouts, in your blog’s root directory create a <code class="highlighter-rouge">_layouts</code> folder, and inside that folder create 4 layout files. <a href="">Here</a> is an example of my layouts.</p>
+<p>To solve issue with missing layouts, in your blog’s root directory create a <code class="highlighter-rouge">_layouts</code> folder, and inside that folder create 4 layout files. <a href="https://github.com/sergodeeva/sergodeeva.github.io/tree/master/_layouts">Here</a> is an example of my layouts.</p>
 
 <h2 id="create-includes">Create includes</h2>
 <p>If you have some code snippets that you want to include in multiple layouts of your site, save the snippets as include files and insert them where required, by using the <code class="highlighter-rouge">include</code> tag. Using <code class="highlighter-rouge">includes</code> also improves the readability of your layouts’ code.</p>
 
-<p>Create <code class="highlighter-rouge">_includes</code> folder in the root directory of your site, and place includes files inside. For example, I created the following includes: <code class="highlighter-rouge">head.html</code>, <code class="highlighter-rouge">header.html</code>, <code class="highlighter-rouge">footer.html</code>. <a href="">Here</a> is an example of my includes.</p>
+<p>Create <code class="highlighter-rouge">_includes</code> folder in the root directory of your site, and place includes files inside. For example, I created the following includes: <code class="highlighter-rouge">head.html</code>, <code class="highlighter-rouge">header.html</code>, <code class="highlighter-rouge">footer.html</code>. <a href="https://github.com/sergodeeva/sergodeeva.github.io/tree/master/_includes">Here</a> is an example of my includes.</p>
 
 <h2 id="update-_configyml">Update _config.yml</h2>
 <p>Now you need to change theme in the <code class="highlighter-rouge">_config.yml</code> file:</p>
@@ -106,7 +106,7 @@ As we are going to use GitHub Pages, make sure you have created a GitHub reposit
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">theme</span><span class="pi">:</span> <span class="s">jekyll-theme-cayman</span></code></pre></figure>
 
 <p>Apart of that you might also need to add some additional settings to the <code class="highlighter-rouge">_config.yml</code> file - settings, that used by the new theme that you are switching to.
-For example, for <code class="highlighter-rouge">Cayman</code> theme I needed to add <code class="highlighter-rouge">repository: sergodeeva/site</code> to my <code class="highlighter-rouge">_config.yml</code>.</p>
+For example, for <code class="highlighter-rouge">Cayman</code> theme I needed to add <code class="highlighter-rouge">repository: sergodeeva/sergodeeva.github.io</code> to my <code class="highlighter-rouge">_config.yml</code>.</p>
 
 <h2 id="customize-css-styles">Customize CSS styles</h2>
 <p>Once you done with updating <code class="highlighter-rouge">layouts</code>, <code class="highlighter-rouge">includes</code> and <code class="highlighter-rouge">_config.yml</code>, run a development server on your local machine:</p>
@@ -115,15 +115,15 @@ For example, for <code class="highlighter-rouge">Cayman</code> theme I needed to
 
 <p>Now you should be able to browse your blog at <code class="highlighter-rouge">http://localhost:4000/</code>.</p>
 
-<p>Probably after you see the blog, you will be tempted to modify some colors, fonts or other CSS properties. By default Jekyll is looking up at theme gem’s CSS files. However you can easily override them by creating a file <code class="highlighter-rouge">assets/css/style.scss</code> in the root directory of your site.</p>
+<p>After you see the blog, you will probably be tempted to modify some colors, fonts or other CSS properties. By default Jekyll is looking up at theme gem’s CSS files. However you can easily override them by creating a file <code class="highlighter-rouge">assets/css/style.scss</code> in the root directory of your site.</p>
 
-<p>In the top of the file, add the follwing content:</p>
+<p>In the top of the file, add the following content:</p>
 
 <figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nt">---</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">---</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="k">@import</span> <span class="s1">"jekyll-theme-cayman"</span><span class="p">;</span></code></pre></figure>
 
 <p>After that you can add any custom CSS (or Sass, including imports) immediately after the <code class="highlighter-rouge">@import</code> line.</p>
 
-<p>See my style.scss and my _sass.</p>
+<p>Alternatively, you can copy <code class="highlighter-rouge">scss</code> files from the theme’s GitHub repository and place them in the <code class="highlighter-rouge">_sass</code> folder of your site. <a href="https://github.com/sergodeeva/sergodeeva.github.io/tree/master/_sass">Here</a> is an example of my <code class="highlighter-rouge">scss</code> files. You can beautify your site by modifying these <code class="highlighter-rouge">scss</code> files.</p>
 
 <h2 id="wrap-up">Wrap up</h2>
 <p>This post was about getting you started with Jekyll themes, but there’s a lot that you can do if you are willing to spend some time to learn. Take a look at the <a href="https://jekyllrb.com/docs/home/">official Jekyll documentation</a> for more information.</p>
