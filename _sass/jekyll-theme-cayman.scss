@@ -97,11 +97,11 @@ a {
   }
 
   @include medium {
-    padding: 3rem 4rem;
+    padding: 4rem 4rem 3rem;
   }
 
   @include small {
-    padding: 2rem 1rem;
+    padding: 4rem 1rem 2rem;
   }
 }
 
@@ -256,8 +256,22 @@ ul.fa-ul li a i {
     font-size: 1rem;
   }
 
-  @media screen and (min-width: 42em) { img { max-width: 100%; float: left; margin-right: 3rem; } }
-  @media screen and (max-width: 42em) { img { max-width: 100%; } }
+  img {
+    max-width: 100%;
+  
+    @include large {
+      float: left;
+      margin-right: 3rem;
+    }
+  
+    @include medium {
+      float: left;
+      margin-right: 3rem;
+    }
+  
+    @include small {
+    }
+  }
 
   h1,
   h2,
