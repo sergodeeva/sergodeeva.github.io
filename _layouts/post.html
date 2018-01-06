@@ -19,6 +19,10 @@ comments: true
     {{ content }}
   </div>
 
+  <h2>Before you go...</h2>
+  <p>If you found this article helpful, click the "Like" button below or share the article on Facebook so your friends can benefit from it too :)</p>
+  <iframe src="https://www.facebook.com/plugins/like.php?href={{ page.url | absolute_url }}&width=450&layout=standard&action=like&size=large&show_faces=true&share=true&height=80&appId=119179925551713" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+
   {% if site.disqus.shortname %}
     {% include disqus-comments.html %}
   {% endif %}
