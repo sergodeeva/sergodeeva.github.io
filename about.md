@@ -13,3 +13,5 @@ I am an IT project manager working for a startup Wego.com in Singapore. But in m
 When I'm not working and not coding, I am usually learning new things (Mandarin Chinese was one of the recent ones). Love to do yoga and travel whenever I can.
 
 Find me on [GitHub](https://github.com/sergodeeva) or [Linkedin](https://www.linkedin.com/in/natalyakosenko/).
+
+[Subscribe to my blog's updates](http://eepurl.com/dgBLKn) (I promise won't bombard you with too many emails :)

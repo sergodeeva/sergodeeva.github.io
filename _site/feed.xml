@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-01-07T15:04:17+08:00</updated><id>http://localhost:4000/</id><title type="html">Natalya Kosenko’s Blog</title><subtitle>From Manager to Developer.</subtitle><author><name>Natalya Kosenko</name></author><entry><title type="html">How I learned to code in my 38</title><link href="http://localhost:4000/2018-01-06-how-i-learned-to-code-in-my-38" rel="alternate" type="text/html" title="How I learned to code in my 38" /><published>2018-01-06T13:49:00+08:00</published><updated>2018-01-06T13:49:00+08:00</updated><id>http://localhost:4000/how-i-learned-to-code-in-my-38</id><content type="html" xml:base="http://localhost:4000/2018-01-06-how-i-learned-to-code-in-my-38">&lt;h2 id=&quot;reasons-i-started-coding&quot;&gt;Reasons I started coding&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-01-07T16:38:09+08:00</updated><id>http://localhost:4000/</id><title type="html">Natalya Kosenko’s Blog</title><subtitle>From Manager to Developer.</subtitle><author><name>Natalya Kosenko</name></author><entry><title type="html">How I learned to code in my 38</title><link href="http://localhost:4000/2018-01-06-how-i-learned-to-code-in-my-38" rel="alternate" type="text/html" title="How I learned to code in my 38" /><published>2018-01-06T13:49:00+08:00</published><updated>2018-01-06T13:49:00+08:00</updated><id>http://localhost:4000/how-i-learned-to-code-in-my-38</id><content type="html" xml:base="http://localhost:4000/2018-01-06-how-i-learned-to-code-in-my-38">&lt;h2 id=&quot;reasons-i-started-coding&quot;&gt;Reasons I started coding&lt;/h2&gt;
 &lt;p&gt;It is all started at the end of 2016. That time I had just completed my upper-intermediate Mandarin course, and I thought: what’s next? Then I thought: if I could learn Mandarin, why can’t I learn some programming language? I thought: be it a human language or a programming language - it is basically the same thing, just programming languages are more formalised and thus easier.&lt;/p&gt;
 
 &lt;p&gt;What is more, I felt like without programming experience I was lacking something as an IT project manager. It was like seeing a half of the picture, and developers seeing another half. But there got to be someone who sees the whole!
-&lt;img src=&quot;/assets/post_images/2018-01-06-iceberg.jpeg&quot; alt=&quot;The whole picture&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;http://localhost:4000/assets/post_images/2018-01-06-iceberg.jpeg&quot; alt=&quot;The whole picture&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;But the very main reason why I started programming were my colleagues-developers from &lt;a href=&quot;https://www.wego.com&quot;&gt;Wego.com&lt;/a&gt; who inspired me. I always wanted to code, but was unconfident and had that weird persuasion that coding is not for women. Even though I have a degree in math and IT, since my graduation 17 years ago I never worked as a programmer.&lt;/p&gt;
 
@@ -12,7 +12,7 @@
 &lt;p&gt;I did not have any idea what to code and found boring writing some dummy code just for practice. So I started taking some minor tasks from the company’s Jira backlog and do them after work. It was mostly one-two lines code updates or bug-fixes. My company’s backend was written in Java and Ruby on Rails, so Java became my first language and Ruby a second one.&lt;/p&gt;
 
 &lt;p&gt;By the end of February I was able to write more than 1-2 lines, something like this:
-&lt;img src=&quot;/assets/post_images/2018-01-06-first-code.png&quot; alt=&quot;First code&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;http://localhost:4000/assets/post_images/2018-01-06-first-code.png&quot; alt=&quot;First code&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;At the beginning I did not have much understanding of what I was doing, often I was just copy-pasting other’s code. There were moments of desperation and anger, when I could not get some programming concept. For example, for a very long time I could not understand the importancy of unit testing and argued with my colleagues that unit tests are useless. Thanks to my colleagues, they were really patient and supportive.&lt;/p&gt;
 
@@ -24,16 +24,16 @@
 &lt;/ul&gt;
 
 &lt;p&gt;I also took a several courses in &lt;a href=&quot;https://www.codeschool.com/users/sergodeeva&quot;&gt;Code School&lt;/a&gt; - mostly courses related to GitHub, MySQL and Ruby.
-&lt;img src=&quot;/assets/post_images/2018-01-06-codeschool.png&quot; alt=&quot;Code Shool cources&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;http://localhost:4000/assets/post_images/2018-01-06-codeschool.png&quot; alt=&quot;Code Shool cources&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;first-hardship&quot;&gt;First hardship&lt;/h2&gt;
 &lt;p&gt;The hardest project I worked on in 2017 was upgrading a RoR app from Rails 4.2.4 to Rails 5. It took me a month of after-work hours (not every day), the first code was commited on 4 July, and a pull request was finally approvied on 4 August:
-&lt;img src=&quot;/assets/post_images/2018-01-06-rails5.png&quot; alt=&quot;Rails 5 upgrade&quot; /&gt;
+&lt;img src=&quot;http://localhost:4000/assets/post_images/2018-01-06-rails5.png&quot; alt=&quot;Rails 5 upgrade&quot; /&gt;
 I did not know it was hard, that is why started working on it enthusiastically. When I realised it was too much of a challenge for me, it was too late, so I had to complete it :) The hardest part was not making the changes, but to make sure my changes did not break anything (that time I understood the importance of good unit tests hahaha).&lt;/p&gt;
 
 &lt;h2 id=&quot;1384-contributions-in-a-year&quot;&gt;1384 contributions in a year&lt;/h2&gt;
 &lt;p&gt;I ended 2017 with 1384 contributions in GitHub (there were some in Bitbucket too, but I don’t count them):
-&lt;img src=&quot;/assets/post_images/2018-01-06-2017.png&quot; alt=&quot;GitHub contribution&quot; /&gt;
+&lt;img src=&quot;http://localhost:4000/assets/post_images/2018-01-06-2017.png&quot; alt=&quot;GitHub contribution&quot; /&gt;
 Not bad for a first year of coding, huh?&lt;/p&gt;
 
 &lt;h2 id=&quot;whats-next&quot;&gt;What’s next?&lt;/h2&gt;
