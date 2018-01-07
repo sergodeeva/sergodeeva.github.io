@@ -3,6 +3,8 @@ layout: post
 title:  "How to create a blog using Hexo on GitHub Pages"
 date:   2017-12-16 17:01:36 +0800
 categories: hexo
+description: "Step by step instruction on creating a personal website using Hexo framework"
+image: "/assets/post_images/2017-12-16-hexo.png"
 ---
 
 I was originally planning to create a blog using [Create React App](https://github.com/facebookincubator/create-react-app). It was extremely easy to set up `create-react-app`, but "the devil is in the details". So I decided to use Hexo framework instead, as did not want to spend much time googling stuff and figuring out the details.

@@ -27,6 +27,7 @@ linkedin_username:  natalyakosenko
 repository: sergodeeva/sergodeeva.github.io
 permalink: /:year-:month-:day-:title
 google_analytics: UA-37473492-7
+logo: "https://sergodeeva.github.io/assets/logo.png"
 
 disqus:
     shortname: sergodeeva

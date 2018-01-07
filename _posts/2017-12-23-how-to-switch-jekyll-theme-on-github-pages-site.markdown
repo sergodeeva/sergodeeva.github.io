@@ -4,6 +4,7 @@ title:  "How to switch Jekyll theme on GitHub Pages site"
 date:   2017-12-23 14:04:12 +0800
 categories: jekyll
 description: "Changing theme of the existing Jekyll installation."
+image: "/assets/post_images/2017-12-23-jekyll.png"
 ---
 
 A new Jekyll site out of the box uses a default gem-based theme called `Minima`. However you can choose from one of many custom themes supported by GitHub Pages: [official Jekyll themes](https://pages.github.com/themes/), as well as [open source Jekyll themes](https://github.com/topics/jekyll-theme) hosted on GitHub.
