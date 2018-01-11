@@ -19,7 +19,7 @@ email: sergodeeva@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   From Manager to Developer.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: https://sergodeeva.github.io
+url: https://www.natalyakosenko.com
 # twitter_username: jekyllrb
 github_username:  sergodeeva
 facebook_username:  natalya.kosenko
@@ -27,7 +27,7 @@ linkedin_username:  natalyakosenko
 repository: sergodeeva/sergodeeva.github.io
 permalink: /:year-:month-:day-:title
 google_analytics: UA-37473492-7
-logo: "https://sergodeeva.github.io/assets/logo.png"
+logo: "https://www.natalyakosenko.com/assets/logo.png"
 
 disqus:
     shortname: sergodeeva

@@ -310,7 +310,7 @@ ul.fa-ul li a i { background: #212529; color: #fff; width: 40px; height: 40px; b
 .main-content :first-child { margin-top: 0; }
 .main-content .post-title { margin-bottom: 0; }
 .main-content .homepage { margin-top: 0rem; }
-.main-content .homepage-img { max-height: 240px; }
+.main-content .homepage-img { max-height: 240px; display: block; }
 .main-content #disqus_thread { padding-top: 40px; }
 @media screen and (min-width: 64em) { .main-content { max-width: 64rem; padding: 2rem 6rem; margin: 0 auto; font-size: 1.1rem; } }
 @media screen and (min-width: 42em) and (max-width: 64em) { .main-content { padding: 2rem 4rem; font-size: 1.1rem; } }

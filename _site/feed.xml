@@ -1,4 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-01-07T16:38:09+08:00</updated><id>http://localhost:4000/</id><title type="html">Natalya Kosenko’s Blog</title><subtitle>From Manager to Developer.</subtitle><author><name>Natalya Kosenko</name></author><entry><title type="html">How I learned to code in my 38</title><link href="http://localhost:4000/2018-01-06-how-i-learned-to-code-in-my-38" rel="alternate" type="text/html" title="How I learned to code in my 38" /><published>2018-01-06T13:49:00+08:00</published><updated>2018-01-06T13:49:00+08:00</updated><id>http://localhost:4000/how-i-learned-to-code-in-my-38</id><content type="html" xml:base="http://localhost:4000/2018-01-06-how-i-learned-to-code-in-my-38">&lt;h2 id=&quot;reasons-i-started-coding&quot;&gt;Reasons I started coding&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-01-11T23:57:04+08:00</updated><id>http://localhost:4000/</id><title type="html">Natalya Kosenko’s Blog</title><subtitle>From Manager to Developer.</subtitle><author><name>Natalya Kosenko</name></author><entry><title type="html">Redirecting GitHub Pages site to a custom domain</title><link href="http://localhost:4000/2018-01-11-redirecting-github-pages-site-to-a-custom-domain" rel="alternate" type="text/html" title="Redirecting GitHub Pages site to a custom domain" /><published>2018-01-11T21:45:00+08:00</published><updated>2018-01-11T21:45:00+08:00</updated><id>http://localhost:4000/redirecting-github-pages-site-to-a-custom-domain</id><content type="html" xml:base="http://localhost:4000/2018-01-11-redirecting-github-pages-site-to-a-custom-domain">&lt;p&gt;A few years ago I had that bad habbit to buy domain names. Could not stop myself from buying if I bumped into some good domain. This time, when building my current personal blog, I decided to use a standart GitHub Pages url (in my case sergodeeva.github.io). But last minute I changed my mind and bought “natalyakosenko.com”.&lt;/p&gt;
+
+&lt;p&gt;The whole process of registering a domain and setting up a redirect from GitHub Pages to my new domain took me exactly 50 minutes:
+&lt;img src=&quot;http://localhost:4000/assets/post_images/2018-01-11-whatsapp.jpg&quot; width=&quot;320&quot; style=&quot;display:block&quot; /&gt;
+(At 10:27 I was asking my brother’s advise about domain name, and at 11:17 everything was done)&lt;/p&gt;
+
+&lt;p&gt;Below is a step by step instruction:&lt;/p&gt;
+
+&lt;h2 id=&quot;register-domain&quot;&gt;Register domain&lt;/h2&gt;
+&lt;p&gt;You can register a domain with your preferrable domain registrar. In my case I went to GoDaddy.com website, checked domain natalyakosenko.com - it was available. So I made payment using my credit card - domain name only, without purchasing any additional services. Domain name cost me about $US 40 for 5 years - not a bad price I think.&lt;/p&gt;
+
+&lt;h2 id=&quot;add-domain-to-github-pages-site&quot;&gt;Add domain to GitHub pages site&lt;/h2&gt;
+&lt;p&gt;Now you need to decide whether you prefer using an apex domain (domain without “www”, e.g. yourdomain.com), or “www” domain (e.g. www.yourdomain.com). In my case I chose www.natalyakosenko.com.
+In your Github pages repository navigate to Settings section. Add your domain url (with or without “www”) into “Custom domain” field, like this:
+&lt;img src=&quot;http://localhost:4000/assets/post_images/2018-01-11-github-pages.png&quot; alt=&quot;Github Pages custom domain&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;update-domain-dns-settings&quot;&gt;Update domain DNS settings&lt;/h2&gt;
+&lt;p&gt;The last step is updating domain’s DNS settings with your DNS provider. Below are instructions for GoDaddy:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Navigate to “DNS” section:
+&lt;img src=&quot;http://localhost:4000/assets/post_images/2018-01-11-godaddy-dns.png&quot; alt=&quot;Manage DNS&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;If you are using domain with “www”, update a value of &lt;code class=&quot;highlighter-rouge&quot;&gt;CNAME&lt;/code&gt; record with your GitHub pages url.&lt;/li&gt;
+  &lt;li&gt;Create two &lt;code class=&quot;highlighter-rouge&quot;&gt;A&lt;/code&gt; records that point your custom domain to the following IP addresses:
+    &lt;ul&gt;
+      &lt;li&gt;192.30.252.153&lt;/li&gt;
+      &lt;li&gt;192.30.252.154&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is how final DNS settings should look like:
+&lt;img src=&quot;http://localhost:4000/assets/post_images/2018-01-11-dns-settings.png&quot; alt=&quot;Final DNS settings&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;That is it. If your GitHub Pages site isn’t loading at your custom domain, you may have an error in your GitHub repository setup or your DNS configuration - double check all the settings.&lt;/p&gt;</content><author><name>Natalya Kosenko</name></author><summary type="html">A few years ago I had that bad habbit to buy domain names. Could not stop myself from buying if I bumped into some good domain. This time, when building my current personal blog, I decided to use a standart GitHub Pages url (in my case sergodeeva.github.io). But last minute I changed my mind and bought “natalyakosenko.com”.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/post_images/2018-01-11-godaddy-dns.png" /></entry><entry><title type="html">How I learned to code at the age of 38</title><link href="http://localhost:4000/2018-01-06-how-i-learned-to-code-at-the-age-of-38" rel="alternate" type="text/html" title="How I learned to code at the age of 38" /><published>2018-01-06T13:49:00+08:00</published><updated>2018-01-06T13:49:00+08:00</updated><id>http://localhost:4000/how-i-learned-to-code-at-the-age-of-38</id><content type="html" xml:base="http://localhost:4000/2018-01-06-how-i-learned-to-code-at-the-age-of-38">&lt;h2 id=&quot;reasons-i-started-coding&quot;&gt;Reasons I started coding&lt;/h2&gt;
 &lt;p&gt;It is all started at the end of 2016. That time I had just completed my upper-intermediate Mandarin course, and I thought: what’s next? Then I thought: if I could learn Mandarin, why can’t I learn some programming language? I thought: be it a human language or a programming language - it is basically the same thing, just programming languages are more formalised and thus easier.&lt;/p&gt;
 
 &lt;p&gt;What is more, I felt like without programming experience I was lacking something as an IT project manager. It was like seeing a half of the picture, and developers seeing another half. But there got to be someone who sees the whole!
