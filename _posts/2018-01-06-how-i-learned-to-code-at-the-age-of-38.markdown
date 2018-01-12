@@ -21,9 +21,6 @@ No sooner said than done, I started coding.
 ## How I chose Java and Ruby
 I did not have any idea what to code and found boring writing some dummy code just for practice. So I started taking some minor tasks from the company's Jira backlog and do them after work. It was mostly one-two lines code updates or bug-fixes. My company's backend was written in Java and Ruby on Rails, so Java became my first language and Ruby a second one.
 
-By the end of February I was able to write more than 1-2 lines, something like this:
-![First code]({{ site.url }}/assets/post_images/2018-01-06-first-code.png)
-
 At the beginning I did not have much understanding of what I was doing, often I was just copy-pasting other's code. There were moments of desperation and anger, when I could not get some programming concept. For example, for a very long time I could not understand the importancy of unit testing and argued with my colleagues that unit tests are useless. Thanks to my colleagues, they were really patient and supportive.
 
 ## Books and courses?
