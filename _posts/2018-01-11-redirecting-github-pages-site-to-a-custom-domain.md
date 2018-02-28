@@ -7,7 +7,7 @@
   image: "/assets/post_images/2018-01-11-godaddy-dns.png"
 ---
 
-A few years ago I had that bad habbit to buy domain names. Could not stop myself from buying if I bumped into some good domain. This time, when building my current personal blog, I decided to use a standart GitHub Pages url (in my case sergodeeva.github.io). But last minute I changed my mind and bought "natalyakosenko.com".
+A few years ago I had that bad habit to buy domain names. Could not stop myself from buying if I bumped into some good domain. This time, when building my current personal blog, I decided to use a standart GitHub Pages url (in my case sergodeeva.github.io). But last minute I changed my mind and bought "natalyakosenko.com".
 
 The whole process of registering a domain and setting up a redirect from GitHub Pages to my new domain took me exactly 50 minutes:
 <img src="{{ site.url }}/assets/post_images/2018-01-11-whatsapp.jpg" width="320" style="display:block"/>
