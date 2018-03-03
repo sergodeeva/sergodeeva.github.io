@@ -17,7 +17,7 @@ title: Natalya Kosenko's Blog
 author: Natalya Kosenko
 email: sergodeeva@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  From Manager to Developer.
+  From Manager to Developer
 baseurl: "" # the subpath of your site, e.g. /blog
 url: http://www.natalyakosenko.com
 # twitter_username: jekyllrb
