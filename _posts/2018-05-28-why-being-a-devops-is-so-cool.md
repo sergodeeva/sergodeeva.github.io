@@ -6,7 +6,7 @@
   description: "I finally understood it"
   image: "/assets/post_images/2018-05-28-devops.jpeg"
 ---
-
+<img src="{{ site.url }}/assets/post_images/2018-05-28-devops.jpeg" width="320" style="display:block"/>
 I knew a full-stack developer who had a fixed idea to become a devops. When I met him, he just transitioned from backend to frontend, and was doing quite well. However all he wanted is to do dev ops. Why, asked I, why? "Because devops are well-paid", he said. But I could not fully believe that it was the only reason. Because airplane pilots are paid even better, why devops then?
 
 And now I understood why.
