@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.4.0 -->
+<title>Falling in love with Python | Natalya Kosenko’s Blog</title>
+<meta name="generator" content="Jekyll v3.7.3" />
+<meta property="og:title" content="Falling in love with Python" />
+<meta name="author" content="Natalya Kosenko" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="My first attempt of wriring a web scraper in Python - code example" />
+<meta property="og:description" content="My first attempt of wriring a web scraper in Python - code example" />
+<link rel="canonical" href="http://localhost:4000/2018-05-31-falling-in-love-with-python" />
+<meta property="og:url" content="http://localhost:4000/2018-05-31-falling-in-love-with-python" />
+<meta property="og:site_name" content="Natalya Kosenko’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-05-31T10:23:00+08:00" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/2018-05-31-falling-in-love-with-python","author":{"@type":"Person","name":"Natalya Kosenko"},"description":"My first attempt of wriring a web scraper in Python - code example","headline":"Falling in love with Python","dateModified":"2018-05-31T10:23:00+08:00","datePublished":"2018-05-31T10:23:00+08:00","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://www.natalyakosenko.com/assets/logo.png"},"name":"Natalya Kosenko"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2018-05-31-falling-in-love-with-python"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/css/style.css?v=bedc7e8278b707b94b7b9ae5293b421ce363f338">
+  <link rel="shortcut icon" href="/assets/favicon.png">
+  <script src="https://use.fontawesome.com/9f9cb26d6f.js"></script>
+
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-37473492-7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-37473492-7');
+</script>
+  
+
+</head>
+  <body>
+    <div class="nav">
+  <a class="logo"></a>
+  <ul class="navbar-nav">
+    <li><a href="/">Home</a></li>
+    <li><a href="/about">About</a></li>
+  </ul>
+</div>
+<section class="page-header">
+  
+    <h1 class="project-name">Falling in love with Python</h1>
+    
+      <h2 class="project-tagline">My first attempt of wriring a web scraper in Python - code example</h2>
+     
+  
+  
+</section>
+    <section class="main-content">
+      <article class="post">
+
+  <header class="post-header">
+    <p class="post-meta">
+      <time datetime="2018-05-31T10:23:00+08:00" itemprop="datePublished">
+        
+        May 31, 2018
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>I tried Python for the first time a couple of weeks ago. Can’t say it was love from the first line of code, but after I replaced a standard PyCharm’s Darcula theme with <a href="https://plugins.jetbrains.com/plugin/8006-material-theme-ui">Atom One Dark</a>, and after I tried to write a web scraper, I started enjoying quite a lot.</p>
+
+<p>So I wrote a scraper that grabs the product data (product name, description, images, price) from one e-commerce website and saves it into CSV file. If the website owner could hear me, I would say sorry, and hope I did not create any issues for that website.</p>
+
+<p>I think the code speaks better than any words, so here is my code (the <code class="highlighter-rouge">URL</code> is dummy just in case :) ):</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">from</span> <span class="nn">utils.transform</span> <span class="kn">import</span> <span class="n">clean_description</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span>
+
+
+<span class="n">URL</span> <span class="o">=</span> <span class="s">'http://www.example.com'</span>
+
+<span class="k">def</span> <span class="nf">get_soup</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">'user-agent'</span><span class="p">:</span> <span class="s">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'</span><span class="p">}</span>
+    <span class="n">timeout</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span>
+    <span class="k">return</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="s">"html.parser"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_category_urls</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">get_soup</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">cat_urls</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">categories</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">'ul'</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">'id'</span><span class="p">:</span> <span class="s">'leftnav'</span><span class="p">})</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">categories</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s">'a'</span><span class="p">):</span>
+        <span class="n">cat_urls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s">'href'</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">cat_urls</span>
+
+
+<span class="k">def</span> <span class="nf">get_product_urls</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">soup</span> <span class="o">=</span> <span class="n">get_soup</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">'ul'</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">"id"</span><span class="p">:</span> <span class="s">"products-grid-table"</span><span class="p">}):</span>
+            <span class="n">pages</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">'div'</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">'class'</span><span class="p">:</span> <span class="s">'page'</span><span class="p">})</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">"of "</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">prod_urls</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">pages</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">soup</span> <span class="o">=</span> <span class="n">get_soup</span><span class="p">(</span><span class="n">url</span> <span class="o">+</span> <span class="s">"?page={}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">page</span><span class="p">))</span>
+                <span class="n">product_urls_soup</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">'ul'</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">'id'</span><span class="p">:</span> <span class="s">'products-grid-table'</span><span class="p">})</span>
+                <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">product_urls_soup</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">'class'</span><span class="p">:</span> <span class="s">'product-image'</span><span class="p">}):</span>
+                    <span class="n">prod_urls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s">'href'</span><span class="p">])</span>
+
+            <span class="k">return</span> <span class="n">prod_urls</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"An error occurred while parsing a category page "</span> <span class="o">+</span> <span class="n">url</span> <span class="o">+</span> <span class="s">": "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+
+<span class="k">def</span> <span class="nf">get_product_details</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">soup</span> <span class="o">=</span> <span class="n">get_soup</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">'div'</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">"class"</span><span class="p">:</span> <span class="s">"product-shop"</span><span class="p">})</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s">'div'</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">'span'</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">==</span> <span class="s">"Available"</span><span class="p">:</span>
+            <span class="n">prod_details</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+            <span class="n">product_id</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">'div'</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">'class'</span><span class="p">:</span> <span class="s">'model'</span><span class="p">})</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">'span'</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+            <span class="n">prod_details</span><span class="p">[</span><span class="s">'title'</span><span class="p">]</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">'div'</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">'class'</span><span class="p">:</span> <span class="s">'product-name'</span><span class="p">})</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">'h2'</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+                <span class="n">product_id</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span>
+            <span class="n">prod_details</span><span class="p">[</span><span class="s">'description'</span><span class="p">]</span> <span class="o">=</span> <span class="n">clean_description</span><span class="p">(</span><span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">'div'</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">'id'</span><span class="p">:</span> <span class="s">'tab_product_details'</span><span class="p">}))</span>
+            <span class="n">prod_details</span><span class="p">[</span><span class="s">'web_url'</span><span class="p">]</span> <span class="o">=</span> <span class="n">url</span>
+            <span class="n">prod_details</span><span class="p">[</span><span class="s">'image_urls'</span><span class="p">]</span> <span class="o">=</span> <span class="s">","</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s">'href'</span><span class="p">],</span>
+                                      <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">'div'</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">'class'</span><span class="p">:</span> <span class="s">'product-img-box'</span><span class="p">})</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s">'a'</span><span class="p">)))))</span>
+            <span class="n">prod_details</span><span class="p">[</span><span class="s">'price'</span><span class="p">]</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">'span'</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">"class"</span><span class="p">:</span> <span class="s">"price"</span><span class="p">})</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"S$"</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">prod_details</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"An error occurred while parsing a product page "</span> <span class="o">+</span> <span class="n">url</span> <span class="o">+</span> <span class="s">": "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+
+
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Started extracting data from "</span> <span class="o">+</span> <span class="n">URL</span> <span class="o">+</span> <span class="s">" at "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">start_time</span><span class="p">))</span>
+
+<span class="n">category_urls</span> <span class="o">=</span> <span class="n">get_category_urls</span><span class="p">(</span><span class="n">URL</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Found {} category pages"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">category_urls</span><span class="p">)))</span>
+
+<span class="n">product_urls</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_product_urls</span><span class="p">(</span><span class="n">category_url</span><span class="p">)</span> <span class="k">for</span> <span class="n">category_url</span> <span class="ow">in</span> <span class="n">category_urls</span><span class="p">]</span>
+<span class="n">product_urls_flat</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">y</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">product_urls</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Found {} product pages"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">product_urls_flat</span><span class="p">)))</span>
+
+<span class="k">with</span> <span class="n">Pool</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
+    <span class="n">products</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="nb">map</span><span class="p">(</span><span class="n">get_product_details</span><span class="p">,</span> <span class="n">product_urls_flat</span><span class="p">)</span>
+<span class="n">products</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">products</span><span class="p">))</span>
+
+<span class="n">end_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Finished extracting data, the process took "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">))</span>
+
+<span class="n">products_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">products</span><span class="p">)</span>
+<span class="n">products_df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s">'product_id'</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="s">'first'</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">products_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">'product.csv'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span></code></pre></figure>
+
+<p>There are four functions:</p>
+<ul>
+  <li><code class="highlighter-rouge">get_soup</code> sends request to the given url and returns html response</li>
+  <li><code class="highlighter-rouge">get_category_urls</code> - returns a list of category urls from the homepage’s menu</li>
+  <li><code class="highlighter-rouge">get_product_urls</code> - returns a list of product urls for the given category, takes into account pagination on the category page</li>
+  <li><code class="highlighter-rouge">get_product_details</code> - returns a product dictionary</li>
+</ul>
+
+<p>I tried <code class="highlighter-rouge">multiprocessing</code> in order to speed up the scraping. Until now still can’t understand what is the difference between <code class="highlighter-rouge">multiprocessing</code> and <code class="highlighter-rouge">threading</code>. Also, not really understand the syntax of it (I found it somewhere on the internet).</p>
+
+<p>The most surprising thing for me was Pandas <code class="highlighter-rouge">drop_duplicates</code> method - without Pandas I might had to spend ages figuring out how to remove duplicates from the list of dictionaries (if a value of one specific key is duplicated).</p>
+
+<p>I am thinking to improve the code further, e.g. in <code class="highlighter-rouge">get_soup</code> I should probably check if response status code is 200. If you have any suggestions of improvements, please write in the comments, it will be greatly appreciated. That’s it for now, this was my first Python code and hope not the last.</p>
+
+  </div>
+
+  <h2>Before you go...</h2>
+  <p>If you found this article helpful, click the "Like" button below or share the article on Facebook so your friends can benefit from it too :)</p>
+  <iframe src="https://www.facebook.com/plugins/like.php?href=http://localhost:4000/2018-05-31-falling-in-love-with-python&width=450&layout=standard&action=like&size=large&show_faces=true&share=true&height=80&appId=119179925551713" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+
+  
+    
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/2018-05-31-falling-in-love-with-python';
+      this.page.identifier = 'http://localhost:4000/2018-05-31-falling-in-love-with-python';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://sergodeeva.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+  
+</article>
+      <footer class="site-footer">
+  <ul class="fa-ul">
+    
+      <li>
+        <a href="https://github.com/sergodeeva" target="_blank">
+          <i class="fa fa-github-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+    
+    <li>
+      <a href="https://linkedin.com/in/natalyakosenko" target="_blank">
+        <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+    
+      <li>
+        <a href="https://www.facebook.com/natalya.kosenko" target="_blank">
+          <i class="fa fa-facebook-square" aria-hidden="true"></i>
+         </a>
+      </li>
+    
+    <li>
+        <a href="http://eepurl.com/dgBLKn" target="_blank">
+          <i class="fa fa-rss-square" aria-hidden="true"></i>
+         </a>
+      </li>
+  </ul>
+  <span class="site-footer-credits">Copyright © 2018 Natalya Kosenko</span>
+</footer>
+    </section>
+  </body>
+</html>

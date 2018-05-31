@@ -4,8 +4,9 @@
   <head>
   <meta charset="UTF-8">
 
-  <!-- Begin Jekyll SEO tag v2.3.0 -->
+  <!-- Begin Jekyll SEO tag v2.4.0 -->
 <title>How to create a blog using Hexo on GitHub Pages | Natalya Kosenko’s Blog</title>
+<meta name="generator" content="Jekyll v3.7.3" />
 <meta property="og:title" content="How to create a blog using Hexo on GitHub Pages" />
 <meta name="author" content="Natalya Kosenko" />
 <meta property="og:locale" content="en_US" />
@@ -18,13 +19,13 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2017-12-16T17:01:36+08:00" />
 <script type="application/ld+json">
-{"name":null,"description":"Step by step instruction on creating a personal website using Hexo framework","url":"http://localhost:4000/2017-12-16-how-to-create-a-blog-using-hexo-on-gitHub-pages","headline":"How to create a blog using Hexo on GitHub Pages","dateModified":"2017-12-16T17:01:36+08:00","datePublished":"2017-12-16T17:01:36+08:00","sameAs":null,"@type":"BlogPosting","author":{"@type":"Person","name":"Natalya Kosenko"},"image":"http://localhost:4000/assets/post_images/2017-12-16-hexo.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://www.natalyakosenko.com/assets/logo.png"},"name":"Natalya Kosenko"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2017-12-16-how-to-create-a-blog-using-hexo-on-gitHub-pages"},"@context":"http://schema.org"}</script>
+{"url":"http://localhost:4000/2017-12-16-how-to-create-a-blog-using-hexo-on-gitHub-pages","author":{"@type":"Person","name":"Natalya Kosenko"},"image":"http://localhost:4000/assets/post_images/2017-12-16-hexo.png","description":"Step by step instruction on creating a personal website using Hexo framework","headline":"How to create a blog using Hexo on GitHub Pages","dateModified":"2017-12-16T17:01:36+08:00","datePublished":"2017-12-16T17:01:36+08:00","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://www.natalyakosenko.com/assets/logo.png"},"name":"Natalya Kosenko"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2017-12-16-how-to-create-a-blog-using-hexo-on-gitHub-pages"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#157878">
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="/assets/css/style.css?v=b1b30784f58e1b13a52a79967025deaedcd13fd2">
+  <link rel="stylesheet" href="/assets/css/style.css?v=bedc7e8278b707b94b7b9ae5293b421ce363f338">
   <link rel="shortcut icon" href="/assets/favicon.png">
   <script src="https://use.fontawesome.com/9f9cb26d6f.js"></script>
 
@@ -97,30 +98,44 @@
 <h2 id="create-blog">Create blog</h2>
 <p>Suppose you want to create your blog in a local folder <code class="highlighter-rouge">my-blog</code>. Run one by one the following commands:</p>
 
-<figure class="highlight"><pre><code class="language-terminal" data-lang="terminal"><span class="go">hexo init my-blog<br data-jekyll-commonmark-ghpages="" />cd my-blog<br data-jekyll-commonmark-ghpages="" /></span><span class="gp">hexo generate #</span> to generate the blog<br data-jekyll-commonmark-ghpages="" /><span class="gp">hexo server #</span> to start hexo server</code></pre></figure>
+<figure class="highlight"><pre><code class="language-terminal" data-lang="terminal"><span class="go">hexo init my-blog
+cd my-blog
+</span><span class="gp">hexo generate #</span> to generate the blog
+<span class="gp">hexo server #</span> to start hexo server</code></pre></figure>
 
 <p>Voila! The blog is ready, check it out at http://localhost:4000/.</p>
 
 <h2 id="configure-blog-settings">Configure blog settings</h2>
 <p>Now you can start configuring your blog using <code class="highlighter-rouge">_config.yml</code> file in the root of your blog’s folder. There are lots of settings can be configured (<a href="https://hexo.io/docs/configuration.html">read more about it</a>). To start with, you can configure some personal information as did I:</p>
 
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># Site</span><br data-jekyll-commonmark-ghpages="" /><span class="na">title</span><span class="pi">:</span> <span class="s">Natalya Kosenko's Blog</span><br data-jekyll-commonmark-ghpages="" /><span class="na">subtitle</span><span class="pi">:</span><br data-jekyll-commonmark-ghpages="" /><span class="na">description</span><span class="pi">:</span><br data-jekyll-commonmark-ghpages="" /><span class="na">author</span><span class="pi">:</span> <span class="s">Natalya Kosenko</span><br data-jekyll-commonmark-ghpages="" /><span class="na">language</span><span class="pi">:</span> <span class="s">en</span><br data-jekyll-commonmark-ghpages="" /><span class="na">timezone</span><span class="pi">:</span> <span class="s">Asia/Singapore</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># Site</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s">Natalya Kosenko's Blog</span>
+<span class="na">subtitle</span><span class="pi">:</span>
+<span class="na">description</span><span class="pi">:</span>
+<span class="na">author</span><span class="pi">:</span> <span class="s">Natalya Kosenko</span>
+<span class="na">language</span><span class="pi">:</span> <span class="s">en</span>
+<span class="na">timezone</span><span class="pi">:</span> <span class="s">Asia/Singapore</span></code></pre></figure>
 
 <h2 id="change-theme">Change theme</h2>
 <p>Now it is time to beautify your blog. You can choose one of a few dozens free themes available <a href="https://hexo.io/themes/">here</a>. My choice was <code class="highlighter-rouge">cactus-white</code> that is based on a <a href="https://github.com/probberechts/cactus-dark">cactus-dark</a> theme. Below are a few commands you need to run one by one in the Terminal in order to switch theme from default one to the <code class="highlighter-rouge">cactus-white</code>:</p>
 
-<figure class="highlight"><pre><code class="language-terminal" data-lang="terminal"><span class="go">git clone git@github.com:sergodeeva/cactus-white.git themes/cactus-white<br data-jekyll-commonmark-ghpages="" />npm install hexo-pagination --save</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-terminal" data-lang="terminal"><span class="go">git clone git@github.com:sergodeeva/cactus-white.git themes/cactus-white
+npm install hexo-pagination --save</span></code></pre></figure>
 
 <p>After you installed a new theme, you need to change the <code class="highlighter-rouge">theme</code> property in the <code class="highlighter-rouge">_config.yml</code> file:</p>
 
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># theme: landscape</span><br data-jekyll-commonmark-ghpages="" /><span class="na">theme</span><span class="pi">:</span> <span class="s">cactus-white</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># theme: landscape</span>
+<span class="na">theme</span><span class="pi">:</span> <span class="s">cactus-white</span></code></pre></figure>
 
 <p>To see the changes at http://localhost:4000/, you need to re-generate blog by running <code class="highlighter-rouge">hexo generate</code>, and then restart the hexo server (stop it and then run <code class="highlighter-rouge">hexo server</code>).</p>
 
 <h2 id="write-a-new-post">Write a new post</h2>
 <p>To create a new post or a new page, you can use the following commands:</p>
 
-<figure class="highlight"><pre><code class="language-terminal" data-lang="terminal"><span class="gp">hexo new post &lt;title&gt;</span> <span class="c"># to create a new post</span><br data-jekyll-commonmark-ghpages="" /><span class="gp">hexo new page &lt;title&gt;</span> <span class="c"># to create a new page</span><br data-jekyll-commonmark-ghpages="" /><span class="gp">hexo new draft &lt;title&gt;</span> <span class="c"># to create a new draft</span><br data-jekyll-commonmark-ghpages="" /><span class="gp">hexo new post "Hello world" #</span> example</code></pre></figure>
+<figure class="highlight"><pre><code class="language-terminal" data-lang="terminal"><span class="gp">hexo new post &lt;title&gt;</span> <span class="c"># to create a new post</span>
+<span class="gp">hexo new page &lt;title&gt;</span> <span class="c"># to create a new page</span>
+<span class="gp">hexo new draft &lt;title&gt;</span> <span class="c"># to create a new draft</span>
+<span class="gp">hexo new post "Hello world" #</span> example</code></pre></figure>
 
 <p>A file with .md extension will be created in a <code class="highlighter-rouge">source</code> folder. You can write your post using <a href="https://daringfireball.net/projects/markdown/syntax">markdown</a> - lightweight markup language with plain text formatting syntax.</p>
 
@@ -132,7 +147,10 @@ Install hexo deployer plugin:</p>
 
 <p>Once the plugin is installed, change deployment settings in the <code class="highlighter-rouge">_config.yml</code>file (replace ‘username’ with your GitHub username):</p>
 
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">deploy</span><span class="pi">:</span><br data-jekyll-commonmark-ghpages="" />  <span class="na">type</span><span class="pi">:</span> <span class="s">git</span><br data-jekyll-commonmark-ghpages="" />  <span class="na">repo</span><span class="pi">:</span> <span class="s">git@github.com:username/username.github.io.git</span><br data-jekyll-commonmark-ghpages="" />  <span class="na">branch</span><span class="pi">:</span> <span class="s">master</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">deploy</span><span class="pi">:</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">git</span>
+  <span class="na">repo</span><span class="pi">:</span> <span class="s">git@github.com:username/username.github.io.git</span>
+  <span class="na">branch</span><span class="pi">:</span> <span class="s">master</span></code></pre></figure>
 
 <p>Deploy the blog to GitHub pages using this command:</p>
 

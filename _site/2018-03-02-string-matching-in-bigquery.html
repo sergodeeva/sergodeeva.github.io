@@ -4,8 +4,9 @@
   <head>
   <meta charset="UTF-8">
 
-  <!-- Begin Jekyll SEO tag v2.3.0 -->
+  <!-- Begin Jekyll SEO tag v2.4.0 -->
 <title>String matching in BigQuery | Natalya Kosenko’s Blog</title>
+<meta name="generator" content="Jekyll v3.7.3" />
 <meta property="og:title" content="String matching in BigQuery" />
 <meta name="author" content="Natalya Kosenko" />
 <meta property="og:locale" content="en_US" />
@@ -18,13 +19,13 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-03-02T21:15:00+08:00" />
 <script type="application/ld+json">
-{"name":null,"description":"Matching two lists of geographical locations using BigQuery","url":"http://localhost:4000/2018-03-02-string-matching-in-bigquery","headline":"String matching in BigQuery","dateModified":"2018-03-02T21:15:00+08:00","datePublished":"2018-03-02T21:15:00+08:00","sameAs":null,"@type":"BlogPosting","author":{"@type":"Person","name":"Natalya Kosenko"},"image":"http://localhost:4000/assets/post_images/2018-03-02-bq.jpg","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://www.natalyakosenko.com/assets/logo.png"},"name":"Natalya Kosenko"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2018-03-02-string-matching-in-bigquery"},"@context":"http://schema.org"}</script>
+{"url":"http://localhost:4000/2018-03-02-string-matching-in-bigquery","author":{"@type":"Person","name":"Natalya Kosenko"},"image":"http://localhost:4000/assets/post_images/2018-03-02-bq.jpg","description":"Matching two lists of geographical locations using BigQuery","headline":"String matching in BigQuery","dateModified":"2018-03-02T21:15:00+08:00","datePublished":"2018-03-02T21:15:00+08:00","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://www.natalyakosenko.com/assets/logo.png"},"name":"Natalya Kosenko"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2018-03-02-string-matching-in-bigquery"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#157878">
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="/assets/css/style.css?v=b1b30784f58e1b13a52a79967025deaedcd13fd2">
+  <link rel="stylesheet" href="/assets/css/style.css?v=bedc7e8278b707b94b7b9ae5293b421ce363f338">
   <link rel="shortcut icon" href="/assets/favicon.png">
   <script src="https://use.fontawesome.com/9f9cb26d6f.js"></script>
 
@@ -109,7 +110,10 @@
 
 <p>So I wrote a simple query to get locations that are presented in both lists:</p>
 
-<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">l1</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="n">l2</span><span class="p">.</span><span class="n">id</span> <span class="k">FROM</span> <span class="n">locations1</span> <span class="n">l1</span><br data-jekyll-commonmark-ghpages="" /><span class="k">JOIN</span> <span class="n">locations2</span> <span class="n">l2</span> <span class="k">ON</span> <span class="n">l1</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">l2</span><span class="p">.</span><span class="n">name</span><br data-jekyll-commonmark-ghpages="" /><span class="k">WHERE</span> <span class="n">l1</span><span class="p">.</span><span class="n">country_code</span> <span class="o">=</span> <span class="n">l2</span><span class="p">.</span><span class="n">country_code</span><br data-jekyll-commonmark-ghpages="" /><span class="p">(</span><span class="k">AND</span> <span class="n">l1</span><span class="p">.</span><span class="n">state_code</span> <span class="o">=</span> <span class="n">l2</span><span class="p">.</span><span class="n">state_code</span> <span class="k">OR</span> <span class="n">l1</span><span class="p">.</span><span class="n">state_code</span> <span class="k">IS</span> <span class="k">NULL</span><span class="p">);</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">l1</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="n">l2</span><span class="p">.</span><span class="n">id</span> <span class="k">FROM</span> <span class="n">locations1</span> <span class="n">l1</span>
+<span class="k">JOIN</span> <span class="n">locations2</span> <span class="n">l2</span> <span class="k">ON</span> <span class="n">l1</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">l2</span><span class="p">.</span><span class="n">name</span>
+<span class="k">WHERE</span> <span class="n">l1</span><span class="p">.</span><span class="n">country_code</span> <span class="o">=</span> <span class="n">l2</span><span class="p">.</span><span class="n">country_code</span>
+<span class="p">(</span><span class="k">AND</span> <span class="n">l1</span><span class="p">.</span><span class="n">state_code</span> <span class="o">=</span> <span class="n">l2</span><span class="p">.</span><span class="n">state_code</span> <span class="k">OR</span> <span class="n">l1</span><span class="p">.</span><span class="n">state_code</span> <span class="k">IS</span> <span class="k">NULL</span><span class="p">);</span></code></pre></figure>
 
 <p>However how to deal with the cases when locations are named slightly differently? E.g. in <code class="highlighter-rouge">locations1</code> I have “St Petersburg” and in <code class="highlighter-rouge">locations2</code> I have “Saint Petersburg” or “St. Petersburg”. Very quickly I found major cases that causing differences:</p>
 
@@ -126,7 +130,12 @@
 
 <p>The function is:</p>
 
-<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TEMP</span> <span class="k">FUNCTION</span> <span class="n">rmSpecCharacters</span><span class="p">(</span><span class="n">name_en</span> <span class="n">STRING</span><span class="p">)</span> <span class="k">AS</span><br data-jekyll-commonmark-ghpages="" /><span class="p">((</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">SELECT</span> <span class="k">REPLACE</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="n">string</span><span class="p">,</span><span class="nv">"saint "</span><span class="p">,</span><span class="nv">"st "</span><span class="p">),</span> <span class="nv">" saint"</span><span class="p">,</span> <span class="nv">" st"</span><span class="p">),</span><span class="nv">"sankt "</span><span class="p">,</span><span class="nv">"st "</span><span class="p">),</span><span class="nv">" sankt"</span><span class="p">,</span><span class="nv">" st"</span><span class="p">),</span><span class="nv">"koh "</span><span class="p">,</span> <span class="nv">"ko "</span><span class="p">),</span><span class="nv">" "</span><span class="p">,</span><span class="nv">""</span><span class="p">)</span> <span class="k">FROM</span> <span class="p">(</span><br data-jekyll-commonmark-ghpages="" />    <span class="k">SELECT</span> <span class="k">REPLACE</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="k">LOWER</span><span class="p">(</span><span class="n">name_en</span><span class="p">),</span><span class="nv">"´"</span><span class="p">,</span><span class="nv">""</span><span class="p">),</span><span class="nv">"'"</span><span class="p">,</span><span class="nv">""</span><span class="p">),</span><span class="nv">"ʼ"</span><span class="p">,</span><span class="nv">""</span><span class="p">),</span><span class="nv">"."</span><span class="p">,</span><span class="nv">""</span><span class="p">),</span><span class="nv">"-"</span><span class="p">,</span><span class="nv">" "</span><span class="p">)</span> <span class="k">as</span> <span class="n">string</span><br data-jekyll-commonmark-ghpages="" /><span class="p">)</span><br data-jekyll-commonmark-ghpages="" /><span class="p">));</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TEMP</span> <span class="k">FUNCTION</span> <span class="n">rmSpecCharacters</span><span class="p">(</span><span class="n">name_en</span> <span class="n">STRING</span><span class="p">)</span> <span class="k">AS</span>
+<span class="p">((</span>
+  <span class="k">SELECT</span> <span class="k">REPLACE</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="n">string</span><span class="p">,</span><span class="nv">"saint "</span><span class="p">,</span><span class="nv">"st "</span><span class="p">),</span> <span class="nv">" saint"</span><span class="p">,</span> <span class="nv">" st"</span><span class="p">),</span><span class="nv">"sankt "</span><span class="p">,</span><span class="nv">"st "</span><span class="p">),</span><span class="nv">" sankt"</span><span class="p">,</span><span class="nv">" st"</span><span class="p">),</span><span class="nv">"koh "</span><span class="p">,</span> <span class="nv">"ko "</span><span class="p">),</span><span class="nv">" "</span><span class="p">,</span><span class="nv">""</span><span class="p">)</span> <span class="k">FROM</span> <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="k">REPLACE</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="k">LOWER</span><span class="p">(</span><span class="n">name_en</span><span class="p">),</span><span class="nv">"´"</span><span class="p">,</span><span class="nv">""</span><span class="p">),</span><span class="nv">"'"</span><span class="p">,</span><span class="nv">""</span><span class="p">),</span><span class="nv">"ʼ"</span><span class="p">,</span><span class="nv">""</span><span class="p">),</span><span class="nv">"."</span><span class="p">,</span><span class="nv">""</span><span class="p">),</span><span class="nv">"-"</span><span class="p">,</span><span class="nv">" "</span><span class="p">)</span> <span class="k">as</span> <span class="n">string</span>
+<span class="p">)</span>
+<span class="p">));</span></code></pre></figure>
 
 <p>As you might have noticed in this query I do not handle cases like “Calangute Beach” and “Calangute”, because sometimes it can be two different locations (e.g. “Miami” and “Miami Beach” are two different cities).</p>
 
@@ -138,7 +147,24 @@
 
 <p>As a result BigQuery treats “Düsseldorf” and “Dusseldorf” as two different strings. So I created one more temp function to replace accented characters with latin:</p>
 
-<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TEMP</span> <span class="k">FUNCTION</span> <span class="n">accent2latin</span><span class="p">(</span><span class="n">name_en</span> <span class="n">STRING</span><span class="p">)</span> <span class="k">AS</span><br data-jekyll-commonmark-ghpages="" /><span class="p">((</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">WITH</span> <span class="n">lookups</span> <span class="k">AS</span> <span class="p">(</span><br data-jekyll-commonmark-ghpages="" />    <span class="k">SELECT</span> <br data-jekyll-commonmark-ghpages="" />    <span class="nv">"ç,æ,œ,á,é,í,ó,ú,à,è,ì,ò,ù,ä,ë,ï,ö,ü,ÿ,â,ê,î,ô,û,å,ø,Ø,Å,Á,À,Â,Ä,È,É,Ê,Ë,Í,Î,Ï,Ì,Ò,Ó,Ô,Ö,Ú,Ù,Û,Ü,Ÿ,Ç,Æ,Œ,ñ,š,ý,ž,ě,õ,ň,č,ř,ť,ł,ő,ń,ź,ś,ć,ę,ã,ā,ū,ī,ð,ţ,ş,ï,ė,đ,ō,ġ,ż,ı,ç,ğ"</span> <span class="k">AS</span> <span class="n">accents</span><span class="p">,</span><br data-jekyll-commonmark-ghpages="" />    <span class="nv">"c,ae,oe,a,e,i,o,u,a,e,i,o,u,a,e,i,o,u,y,a,e,i,o,u,a,o,O,A,A,A,A,A,E,E,E,E,I,I,I,I,O,O,O,O,U,U,U,U,Y,C,AE,OE,n,s,y,z,e,o,n,c,r,t,l,o,n,z,s,c,e,a,a,u,i,d,t,s,i,e,d,o,g,z,i,c,g"</span> <span class="k">AS</span> <span class="n">latins</span><br data-jekyll-commonmark-ghpages="" />  <span class="p">),</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">pairs</span> <span class="k">AS</span> <span class="p">(</span><br data-jekyll-commonmark-ghpages="" />    <span class="k">SELECT</span> <span class="n">accent</span><span class="p">,</span> <span class="n">latin</span> <span class="k">FROM</span> <span class="n">lookups</span><span class="p">,</span> <br data-jekyll-commonmark-ghpages="" />      <span class="k">UNNEST</span><span class="p">(</span><span class="n">SPLIT</span><span class="p">(</span><span class="n">accents</span><span class="p">))</span> <span class="k">AS</span> <span class="n">accent</span> <span class="k">WITH</span> <span class="k">OFFSET</span> <span class="k">AS</span> <span class="n">p1</span><span class="p">,</span> <br data-jekyll-commonmark-ghpages="" />      <span class="k">UNNEST</span><span class="p">(</span><span class="n">SPLIT</span><span class="p">(</span><span class="n">latins</span><span class="p">))</span> <span class="k">AS</span> <span class="n">latin</span> <span class="k">WITH</span> <span class="k">OFFSET</span> <span class="k">AS</span> <span class="n">p2</span><br data-jekyll-commonmark-ghpages="" />    <span class="k">WHERE</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">p2</span><br data-jekyll-commonmark-ghpages="" />  <span class="p">)</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">SELECT</span> <span class="n">STRING_AGG</span><span class="p">(</span><span class="n">IFNULL</span><span class="p">(</span><span class="n">latin</span><span class="p">,</span> <span class="n">char</span><span class="p">),</span> <span class="s1">''</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">FROM</span> <span class="k">UNNEST</span><span class="p">(</span><span class="n">SPLIT</span><span class="p">(</span><span class="n">name_en</span><span class="p">,</span> <span class="s1">''</span><span class="p">))</span> <span class="n">char</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">pairs</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">ON</span> <span class="n">char</span> <span class="o">=</span> <span class="n">accent</span><br data-jekyll-commonmark-ghpages="" /><span class="p">));</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TEMP</span> <span class="k">FUNCTION</span> <span class="n">accent2latin</span><span class="p">(</span><span class="n">name_en</span> <span class="n">STRING</span><span class="p">)</span> <span class="k">AS</span>
+<span class="p">((</span>
+  <span class="k">WITH</span> <span class="n">lookups</span> <span class="k">AS</span> <span class="p">(</span>
+    <span class="k">SELECT</span> 
+    <span class="nv">"ç,æ,œ,á,é,í,ó,ú,à,è,ì,ò,ù,ä,ë,ï,ö,ü,ÿ,â,ê,î,ô,û,å,ø,Ø,Å,Á,À,Â,Ä,È,É,Ê,Ë,Í,Î,Ï,Ì,Ò,Ó,Ô,Ö,Ú,Ù,Û,Ü,Ÿ,Ç,Æ,Œ,ñ,š,ý,ž,ě,õ,ň,č,ř,ť,ł,ő,ń,ź,ś,ć,ę,ã,ā,ū,ī,ð,ţ,ş,ï,ė,đ,ō,ġ,ż,ı,ç,ğ"</span> <span class="k">AS</span> <span class="n">accents</span><span class="p">,</span>
+    <span class="nv">"c,ae,oe,a,e,i,o,u,a,e,i,o,u,a,e,i,o,u,y,a,e,i,o,u,a,o,O,A,A,A,A,A,E,E,E,E,I,I,I,I,O,O,O,O,U,U,U,U,Y,C,AE,OE,n,s,y,z,e,o,n,c,r,t,l,o,n,z,s,c,e,a,a,u,i,d,t,s,i,e,d,o,g,z,i,c,g"</span> <span class="k">AS</span> <span class="n">latins</span>
+  <span class="p">),</span>
+  <span class="n">pairs</span> <span class="k">AS</span> <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="n">accent</span><span class="p">,</span> <span class="n">latin</span> <span class="k">FROM</span> <span class="n">lookups</span><span class="p">,</span> 
+      <span class="k">UNNEST</span><span class="p">(</span><span class="n">SPLIT</span><span class="p">(</span><span class="n">accents</span><span class="p">))</span> <span class="k">AS</span> <span class="n">accent</span> <span class="k">WITH</span> <span class="k">OFFSET</span> <span class="k">AS</span> <span class="n">p1</span><span class="p">,</span> 
+      <span class="k">UNNEST</span><span class="p">(</span><span class="n">SPLIT</span><span class="p">(</span><span class="n">latins</span><span class="p">))</span> <span class="k">AS</span> <span class="n">latin</span> <span class="k">WITH</span> <span class="k">OFFSET</span> <span class="k">AS</span> <span class="n">p2</span>
+    <span class="k">WHERE</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">p2</span>
+  <span class="p">)</span>
+  <span class="k">SELECT</span> <span class="n">STRING_AGG</span><span class="p">(</span><span class="n">IFNULL</span><span class="p">(</span><span class="n">latin</span><span class="p">,</span> <span class="n">char</span><span class="p">),</span> <span class="s1">''</span><span class="p">)</span>
+  <span class="k">FROM</span> <span class="k">UNNEST</span><span class="p">(</span><span class="n">SPLIT</span><span class="p">(</span><span class="n">name_en</span><span class="p">,</span> <span class="s1">''</span><span class="p">))</span> <span class="n">char</span>
+  <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">pairs</span>
+  <span class="k">ON</span> <span class="n">char</span> <span class="o">=</span> <span class="n">accent</span>
+<span class="p">));</span></code></pre></figure>
 
 <p>(Original code was copied from <a href="https://stackoverflow.com/questions/43145902/bigquery-convert-accented-characters-to-their-plain-ascii-equivalents/43148949">here</a>, however I enhanced it by adding Turkish, Czech and some other accented characters).</p>
 
@@ -148,7 +174,42 @@
 <p>To measure string similarity I decided to use <a href="https://en.wikipedia.org/wiki/Levenshtein_distance">Levenshtein distance</a> algorithm.
 So I created a temporary BigQuery function that calculates similarity of two given strings:</p>
 
-<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TEMPORARY</span> <span class="k">FUNCTION</span> <span class="n">levenshtein</span><span class="p">(</span><span class="n">a</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">b</span> <span class="n">STRING</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" /><span class="k">RETURNS</span> <span class="n">FLOAT64</span><br data-jekyll-commonmark-ghpages="" /><span class="k">LANGUAGE</span> <span class="n">js</span> <span class="k">AS</span> <span class="nv">"</span><span class="se">""</span><span class="nv"><br data-jekyll-commonmark-ghpages="" />  if(a == null) return 0;<br data-jekyll-commonmark-ghpages="" />  if(b == null) return 0;<br data-jekyll-commonmark-ghpages="" />  if(a.length == 0) return b.length; <br data-jekyll-commonmark-ghpages="" />  if(b.length == 0) return a.length; <br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  var matrix = [];<br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  var i;<br data-jekyll-commonmark-ghpages="" />  for(i = 0; i &lt;= b.length; i++){<br data-jekyll-commonmark-ghpages="" />    matrix[i] = [i];<br data-jekyll-commonmark-ghpages="" />  }<br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  var j;<br data-jekyll-commonmark-ghpages="" />  for(j = 0; j &lt;= a.length; j++){<br data-jekyll-commonmark-ghpages="" />    matrix[0][j] = j;<br data-jekyll-commonmark-ghpages="" />  }<br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  for(i = 1; i &lt;= b.length; i++){<br data-jekyll-commonmark-ghpages="" />    for(j = 1; j &lt;= a.length; j++){<br data-jekyll-commonmark-ghpages="" />      if(b.charAt(i-1) == a.charAt(j-1)){<br data-jekyll-commonmark-ghpages="" />        matrix[i][j] = matrix[i-1][j-1];<br data-jekyll-commonmark-ghpages="" />      } else {<br data-jekyll-commonmark-ghpages="" />        matrix[i][j] = Math.min(matrix[i-1][j-1] + 1,<br data-jekyll-commonmark-ghpages="" />                                Math.min(matrix[i][j-1] + 1,<br data-jekyll-commonmark-ghpages="" />                                         matrix[i-1][j] + 1));<br data-jekyll-commonmark-ghpages="" />      }<br data-jekyll-commonmark-ghpages="" />    }<br data-jekyll-commonmark-ghpages="" />  }<br data-jekyll-commonmark-ghpages="" />  <br data-jekyll-commonmark-ghpages="" />  var strlen = Math.max(a.length, b.length);<br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  return 1.0 - (matrix[b.length][a.length] / strlen);<br data-jekyll-commonmark-ghpages="" /></span><span class="se">""</span><span class="nv">"</span><span class="p">;</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TEMPORARY</span> <span class="k">FUNCTION</span> <span class="n">levenshtein</span><span class="p">(</span><span class="n">a</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">b</span> <span class="n">STRING</span><span class="p">)</span>
+<span class="k">RETURNS</span> <span class="n">FLOAT64</span>
+<span class="k">LANGUAGE</span> <span class="n">js</span> <span class="k">AS</span> <span class="nv">"</span><span class="se">""</span><span class="nv">
+  if(a == null) return 0;
+  if(b == null) return 0;
+  if(a.length == 0) return b.length; 
+  if(b.length == 0) return a.length; 
+
+  var matrix = [];
+
+  var i;
+  for(i = 0; i &lt;= b.length; i++){
+    matrix[i] = [i];
+  }
+
+  var j;
+  for(j = 0; j &lt;= a.length; j++){
+    matrix[0][j] = j;
+  }
+
+  for(i = 1; i &lt;= b.length; i++){
+    for(j = 1; j &lt;= a.length; j++){
+      if(b.charAt(i-1) == a.charAt(j-1)){
+        matrix[i][j] = matrix[i-1][j-1];
+      } else {
+        matrix[i][j] = Math.min(matrix[i-1][j-1] + 1,
+                                Math.min(matrix[i][j-1] + 1,
+                                         matrix[i-1][j] + 1));
+      }
+    }
+  }
+  
+  var strlen = Math.max(a.length, b.length);
+
+  return 1.0 - (matrix[b.length][a.length] / strlen);
+</span><span class="se">""</span><span class="nv">"</span><span class="p">;</span></code></pre></figure>
 
 <p>Similarity is a number between 0 and 1. Per my observations, if two location names have similarity 0.8 and above, they are most likely the same. However it is not always the case. For example, similarity of “Bangalore” and “Bengaluru” is 0.66 only.</p>
 
