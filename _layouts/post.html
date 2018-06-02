@@ -26,11 +26,66 @@ comments: true
     {{ content }}
   </div>
 
-  <h2>Before you go...</h2>
-  <p>If you found this article helpful, click the "Like" button below or share the article on Facebook so your friends can benefit from it too :)</p>
+  <br/>
   <iframe src="https://www.facebook.com/plugins/like.php?href={{ page.url | absolute_url }}&width=450&layout=standard&action=like&size=large&show_faces=true&share=true&height=80&appId=119179925551713" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 
-  {% if site.disqus.shortname %}
-    {% include disqus-comments.html %}
-  {% endif %}
 </article>
+
+<div class="relatedPosts">
+  <h2>Related Posts</h2>
+    {% assign RELATED_POSTS_THRESHOLD = 3 %}
+
+    <ul>
+      {% assign related_post_count = 0 %}
+      {% for post in site.related_posts %}
+        {% if related_post_count == RELATED_POSTS_THRESHOLD %}
+          {% break %}
+        {% endif %}
+        {% for tag in post.tags %}
+          {% if page.tags contains tag %}
+            <li>
+              <h3>
+                <a href="{{ site.url }}{{ post.url }}">
+                  {{ post.title }}
+                </a>
+              </h3>
+            </li>
+            {% assign related_post_count = related_post_count | plus: 1 %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    
+      {% assign posts_left = RELATED_POSTS_THRESHOLD | minus: related_post_count %}
+      {% unless posts_left == 0 %}
+        {% for post in site.related_posts %}
+          {% if posts_left == 0 %}
+            {% break %}
+          {% endif %}
+    
+          {% assign already_related = false %}
+          {% for tag in post.tags %}
+            {% if page.tags contains tag %}
+              {% assign already_related = true %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+          {% unless already_related %}
+            {% assign posts_left = posts_left | minus: 1 %}
+            <li>
+              <h3>
+                <a href="{{ site.url }}{{ post.url }}">
+                  {{ post.title }}
+                  <small>{{ post.date | date_to_string }}</small>
+                </a>
+              </h3>
+            </li>
+          {% endunless %}
+        {% endfor %}
+      {% endunless %}
+    </ul>
+</div>
+
+{% if site.disqus.shortname %}
+  {% include disqus-comments.html %}
+{% endif %}
