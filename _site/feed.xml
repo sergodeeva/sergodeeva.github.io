@@ -1,4 +1,86 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-05-31T23:41:25+08:00</updated><id>http://localhost:4000/</id><title type="html">Natalya Kosenko’s Blog</title><subtitle>From Manager to Developer</subtitle><author><name>Natalya Kosenko</name></author><entry><title type="html">Falling in love with Python</title><link href="http://localhost:4000/2018-05-31-falling-in-love-with-python" rel="alternate" type="text/html" title="Falling in love with Python" /><published>2018-05-31T10:23:00+08:00</published><updated>2018-05-31T10:23:00+08:00</updated><id>http://localhost:4000/falling-in-love-with-python</id><content type="html" xml:base="http://localhost:4000/2018-05-31-falling-in-love-with-python">&lt;p&gt;I tried Python for the first time a couple of weeks ago. Can’t say it was love from the first line of code, but after I replaced a standard PyCharm’s Darcula theme with &lt;a href=&quot;https://plugins.jetbrains.com/plugin/8006-material-theme-ui&quot;&gt;Atom One Dark&lt;/a&gt;, and after I tried to write a web scraper, I started enjoying quite a lot.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-06-02T13:01:20+08:00</updated><id>http://localhost:4000/</id><title type="html">Natalya Kosenko’s Blog</title><subtitle>From Manager to Developer</subtitle><author><name>Natalya Kosenko</name></author><entry><title type="html">Bulk update records in MySQL DB with Python</title><link href="http://localhost:4000/2018-06-02-bulk-update-records-in-mysql-db-with-python" rel="alternate" type="text/html" title="Bulk update records in MySQL DB with Python" /><published>2018-06-02T12:19:00+08:00</published><updated>2018-06-02T12:19:00+08:00</updated><id>http://localhost:4000/bulk-update-records-in-mysql-db-with-python</id><content type="html" xml:base="http://localhost:4000/2018-06-02-bulk-update-records-in-mysql-db-with-python">&lt;p&gt;Yesterday I spent a couple of hours trying to find the best way of updating multiple records in MySQL db using Python. Unfortunately could not find any really elegant way, as a result I ended up with using &lt;code class=&quot;highlighter-rouge&quot;&gt;'INSERT ON DUPLICATE KEY UPDATE'&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Sharing my code here, hope it will save you time. If you know any better way of updating multiple rows in mysql db with python, let me know in the comments.&lt;/p&gt;
+
+&lt;p&gt;So, let’s say I have a &lt;code class=&quot;highlighter-rouge&quot;&gt;students&lt;/code&gt; table wich looks like this:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;id&lt;/th&gt;
+      &lt;th&gt;name&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;cate blanchett&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;sia furler&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;priyanka chopra&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;And let’s say I want to capitalize each word in the &lt;code class=&quot;highlighter-rouge&quot;&gt;name&lt;/code&gt; column (in reality I needed to apply more complex transformation, but will be talking about capitalizing for simplicity).&lt;/p&gt;
+
+&lt;p&gt;Here is the code that is doing a bulk update:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sqlalchemy&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;create_engine&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pandas&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;sql_select&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;SELECT id, name FROM students&quot;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;engine&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;create_engine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'mysql+pymysql://root:123@127.0.0.1:3306/schooldb?charset=utf8'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;students_df&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read_sql&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sql_select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;engine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;students_df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'name'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;students_df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'name'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;students_tp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;tuple&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prod&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;students_df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'[]'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;sql_update&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;INSERT INTO students (id, name) VALUES &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;students_tp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; ON DUPLICATE KEY UPDATE name=VALUES(name)&quot;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;engine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sql_update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Basically what I am doing here is:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;getting data from the DB table using &lt;code class=&quot;highlighter-rouge&quot;&gt;sqlalchemy&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;storing it into dataframe (to do so need to import &lt;code class=&quot;highlighter-rouge&quot;&gt;pandas&lt;/code&gt;)&lt;/li&gt;
+  &lt;li&gt;applying the transformation I need (in this case I am capitalizing each word in the &lt;code class=&quot;highlighter-rouge&quot;&gt;name&lt;/code&gt; column using &lt;code class=&quot;highlighter-rouge&quot;&gt;title()&lt;/code&gt; function)&lt;/li&gt;
+  &lt;li&gt;converting the transformed dataframe to tuples (so that the data will look like &lt;code class=&quot;highlighter-rouge&quot;&gt;(1, 'Cate Blanchett'), (2, 'Sia Furler'), (3, 'Priyanka Chopra')&lt;/code&gt;)&lt;/li&gt;
+  &lt;li&gt;updating the table using ‘INSERT INTO’ … ‘ON DUPLICATE KEY UPDATE’ statement&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is how the database table looks like after I ran my script:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;id&lt;/th&gt;
+      &lt;th&gt;name&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;Cate Blanchett&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;Sia Furler&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;Priyanka Chopra&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Easy. But I still feel there should be a better way…&lt;/p&gt;</content><author><name>Natalya Kosenko</name></author><summary type="html">Yesterday I spent a couple of hours trying to find the best way of updating multiple records in MySQL db using Python. Unfortunately could not find any really elegant way, as a result I ended up with using 'INSERT ON DUPLICATE KEY UPDATE'.</summary></entry><entry><title type="html">Falling in love with Python</title><link href="http://localhost:4000/2018-05-31-falling-in-love-with-python" rel="alternate" type="text/html" title="Falling in love with Python" /><published>2018-05-31T10:23:00+08:00</published><updated>2018-05-31T10:23:00+08:00</updated><id>http://localhost:4000/falling-in-love-with-python</id><content type="html" xml:base="http://localhost:4000/2018-05-31-falling-in-love-with-python">&lt;p&gt;I tried Python for the first time a couple of weeks ago. Can’t say it was love from the first line of code, but after I replaced a standard PyCharm’s Darcula theme with &lt;a href=&quot;https://plugins.jetbrains.com/plugin/8006-material-theme-ui&quot;&gt;Atom One Dark&lt;/a&gt;, and after I tried to write a web scraper, I started enjoying quite a lot.&lt;/p&gt;
 
 &lt;p&gt;So I wrote a scraper that grabs the product data (product name, description, images, price) from one e-commerce website and saves it into CSV file. If the website owner could hear me, I would say sorry, and hope I did not create any issues for that website.&lt;/p&gt;
 
