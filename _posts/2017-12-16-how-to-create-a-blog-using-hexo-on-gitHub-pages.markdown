@@ -2,7 +2,7 @@
 layout: post
 title:  "How to create a blog using Hexo on GitHub Pages"
 date:   2017-12-16 17:01:36 +0800
-categories: hexo
+tags: hexo githubpages
 description: "Step by step instruction on creating a personal website using Hexo framework"
 image: "/assets/post_images/2017-12-16-hexo.png"
 ---

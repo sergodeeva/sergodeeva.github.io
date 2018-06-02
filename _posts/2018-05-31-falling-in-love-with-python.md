@@ -2,7 +2,7 @@
   layout: post
   title: "Falling in love with Python"
   date:   2018-05-31 10:23:00 +0800
-  categories: python
+  tags: python ilovecoding
   description: "My first attempt of wriring a web scraper in Python - code example"
 ---
 

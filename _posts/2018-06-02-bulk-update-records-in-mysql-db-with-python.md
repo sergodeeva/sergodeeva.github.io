@@ -2,7 +2,7 @@
   layout: post
   title: "Bulk update records in MySQL DB with Python"
   date:   2018-06-02 12:19:00 +0800
-  categories: python
+  tags: python mysql
   description: "Using INSERT ON DUPLICATE KEY UPDATE"
 ---
 

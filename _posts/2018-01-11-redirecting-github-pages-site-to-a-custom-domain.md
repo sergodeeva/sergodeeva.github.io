@@ -2,7 +2,7 @@
   layout: post
   title: "Redirecting GitHub Pages site to a custom domain"
   date:   2018-01-11 21:45:00 +0800
-  categories: githubpages
+  tags: githubpages
   description: "Step by step instruction on how to setup your own domain with GitHub Pages"
   image: "/assets/post_images/2018-01-11-godaddy-dns.png"
 ---

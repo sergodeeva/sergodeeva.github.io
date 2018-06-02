@@ -2,7 +2,7 @@
 layout: post
 title:  "How to switch Jekyll theme on GitHub Pages site"
 date:   2017-12-23 14:04:12 +0800
-categories: jekyll
+tags: jekyll githubpages
 description: "Changing theme of the existing Jekyll installation."
 image: "/assets/post_images/2017-12-23-jekyll.png"
 ---

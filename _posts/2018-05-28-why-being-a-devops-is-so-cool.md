@@ -2,7 +2,7 @@
   layout: post
   title: "Why being a devops engineer is so cool"
   date:   2018-05-28 21:46:00 +0800
-  categories: devops
+  tags: devops
   description: "I finally understood it"
   image: "/assets/post_images/2018-05-28-devops.jpeg"
 ---

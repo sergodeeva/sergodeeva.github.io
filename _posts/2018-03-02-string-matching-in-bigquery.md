@@ -2,7 +2,7 @@
   layout: post
   title: "String matching in BigQuery"
   date:   2018-03-02 21:15:00 +0800
-  categories: bigquery
+  tags: bigquery
   description: "Matching two lists of geographical locations using BigQuery"
   image: "/assets/post_images/2018-03-02-bq.jpg"
 ---
