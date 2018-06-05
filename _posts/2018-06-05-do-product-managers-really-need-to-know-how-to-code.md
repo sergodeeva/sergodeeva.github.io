@@ -4,7 +4,7 @@
   date:   2018-06-05 21:47:00 +0800
   tags: ilovecoding
   description: "Recently I started questioning this statement. And well, I am not so sure any more."
-  image: "/assets/post_images/2018-05-28-devops.jpeg"
+  image: "/assets/post_images/2018-06-05-pm.png"
 ---
 
 On my [Linkedin profile summary](https://www.linkedin.com/in/natalyakosenko/) I have a phrase "I believe that deep understanding of programming can help IT managers do their jobs much more effectively." To be honest I copied this from someone else's CV, but it reflected my way of thinking at that moment. Recently I started questioning this statement. Is it really helpful for product managers (PM) to know how to write code?
