@@ -9,6 +9,8 @@
 
 On my [Linkedin profile summary](https://www.linkedin.com/in/natalyakosenko/) I have a phrase "I believe that deep understanding of programming can help IT managers do their jobs much more effectively." To be honest I copied this from someone else's CV, but it reflected my way of thinking at that moment. Recently I started questioning this statement. Is it really helpful for product managers (PM) to know how to write code?
 
+<img src="{{ site.url }}/assets/post_images/2018-06-05-pm.png" width="320" style="display:block"/>
+
 Well, I am not so sure any more.
 
 Here are some sterotypes:
