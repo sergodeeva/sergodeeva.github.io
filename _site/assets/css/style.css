@@ -290,7 +290,7 @@ a:hover { text-decoration: underline; }
 a.post-link { color: #212529; font-size: 2.25rem; text-decoration: none; }
 a.post-link:hover { color: #0085a1; }
 
-ul.fa-ul { overflow: auto; width: 200px; margin-left: auto; margin-right: auto; }
+ul.fa-ul { overflow: auto; width: 250px; margin-left: auto; margin-right: auto; }
 
 ul.fa-ul li { list-style-type: none; float: left; }
 
