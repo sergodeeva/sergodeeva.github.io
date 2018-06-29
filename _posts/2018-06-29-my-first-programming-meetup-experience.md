@@ -16,7 +16,7 @@ In the first month I have attended 4 python-related meetups. It was a good exper
 
 <img src="{{ site.url }}/assets/post_images/2018-06-29-google-ml.jpg" style="display:block"/>
 
-By the way, if I started talking about the food, so far the best meetup food I ate was during Singapore Python User Group meetup hosted by [Zendesk](https://www.zendesk.com/jobs/singapore/). Until now can't forget those butter prawns and delicious beef... (sad there was no beer, but still... as Russians say "daryonomy konyu v zuby ne smotryat" which means thay if you got something free, you should not complain).
+By the way, if I started talking about the food, so far the best meetup food I ate was during Singapore Python User Group meetup hosted by [Zendesk](https://www.zendesk.com/jobs/singapore/). Until now can't forget those butter prawns and delicious beef... (sad there was no beer, but still... as Russians say "daryonomy konyu v zuby ne smotryat" which means that if you got something free, you should not complain).
 
 There was one thing on all the meetups that I completly did not expect though. What I imagined about meetups was: a group of "hardcore" programmers meet, drink beer, eat pizza and talk about coding. In reality so far I got an impression that **high percent of people attending programming meetups are not programmers at all**:
 1. Some people apparently just come to eat. So they grab the food and leave once they done with their dinner :)
