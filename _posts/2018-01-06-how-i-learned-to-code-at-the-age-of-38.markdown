@@ -5,6 +5,8 @@ date:   2018-01-06 13:49:00 +0800
 tags: ilovecoding
 description: "A story of how I learned to code in 2017, and ended a year with 1384 GitHub contributions"
 image: "/assets/post_images/2018-01-06-2017.png"
+redirect_from:
+    - /2018-01-06-how-i-learned-to-code-in-my-38
 ---
 
 ## Reasons I started coding
