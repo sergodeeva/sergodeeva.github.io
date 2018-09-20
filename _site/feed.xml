@@ -1,4 +1,108 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-06-29T23:13:02+08:00</updated><id>http://localhost:4000/</id><title type="html">Natalya Kosenko’s Blog</title><subtitle>From Manager to Developer</subtitle><author><name>Natalya Kosenko</name></author><entry><title type="html">My first programming meetup experience</title><link href="http://localhost:4000/2018-06-29-my-first-programming-meetup-experience" rel="alternate" type="text/html" title="My first programming meetup experience" /><published>2018-06-29T20:55:00+08:00</published><updated>2018-06-29T20:55:00+08:00</updated><id>http://localhost:4000/my-first-programming-meetup-experience</id><content type="html" xml:base="http://localhost:4000/2018-06-29-my-first-programming-meetup-experience">&lt;p&gt;I have a good friend (who I met on a Chinese language course by the way). When she learned about my secret affair with programming, she and her husband told me that I should attend a programming meetup, to meet people who are the same as me love programming. I was telling them: “Yes, I definitely will”. But deep in my mind (or heart) I felt nervous about it: I thought my programming knowledge was not respectable, thus I should not pretend of being a developer and attend any programming events.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-09-20T23:00:27+08:00</updated><id>http://localhost:4000/</id><title type="html">Natalya Kosenko’s Blog</title><subtitle>From Manager to Developer</subtitle><author><name>Natalya Kosenko</name></author><entry><title type="html">Using Selenium WebDriver and Python for site testing</title><link href="http://localhost:4000/2018-09-20-using-selenium-and-python-for-website-testing" rel="alternate" type="text/html" title="Using Selenium WebDriver and Python for site testing" /><published>2018-09-20T19:59:00+08:00</published><updated>2018-09-20T19:59:00+08:00</updated><id>http://localhost:4000/using-selenium-and-python-for-website-testing</id><content type="html" xml:base="http://localhost:4000/2018-09-20-using-selenium-and-python-for-website-testing">&lt;p&gt;Have you ever had a situation when a website you are working on got some issues, and you knew about it not from your monitoring dashboards/alerts but from the end users or from your manager? For example, autosuggest stopped working, or crucial for SEO metatags misteriously disappeared from some pages, or a button suddenly became unclickable.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/post_images/2018-09-20-software-bugs.jpg&quot; style=&quot;display:block&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It happened to me, and I can tell there is no pleasure when someone finds your/your team mates bugs before you found them. Luckily, it happens to me not that often any more, as recently my colleague Nik enlightened me about website testing with Python and Selenium.&lt;/p&gt;
+
+&lt;p&gt;How is it different from other kinds of testing? Basically the idea is to write a humanlike bot that will visit your website and do some simple actions: click buttons, type queries in autosuggest field, verify presence of webpage elements, verify meta tags etc. If something is not as expected, the bot will notify you.&lt;/p&gt;
+
+&lt;p&gt;But enough words, let me show you some code. I will be testing my own blog natalyakosenko.com:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;verify that the homepage has right title,&lt;/li&gt;
+  &lt;li&gt;verify that the homepage has one and only one h1 header,&lt;/li&gt;
+  &lt;li&gt;verify that all the post links on the homepage are not broken.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To be honest, you do not need to use Selenium for such simple cases. Can use &lt;code class=&quot;highlighter-rouge&quot;&gt;requests&lt;/code&gt; instead. But I am using these examples for simplicity, to explain the idea. So here is the code:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;requests&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;unittest&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;selenium&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;webdriver&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HomepageTest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unittest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TestCase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setUp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;webdriver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Chrome&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'http://www.natalyakosenko.com/'&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_homepage_title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assertIn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Kosenko'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_homepage_h1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;h1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find_elements_by_tag_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'h1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assertEqual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_broken_links&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;links&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find_elements_by_class_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'post-link'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;link&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;links&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requests&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;link&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_attribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'href'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+                &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assertTrue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;status_code&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;201&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;except&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Broken link detected {link.get_attribute('href')}: {ex}&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;tearDown&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;test_suite&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unittest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TestSuite&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;test_suite&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addTest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HomepageTest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;unittest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;warnings&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'ignore'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;In this example, I have one test suite, &lt;code class=&quot;highlighter-rouge&quot;&gt;HomepageTest&lt;/code&gt; class. In reality you might have many test suites, each test suite contains tests that are grouped together according to pages/features they test.&lt;/p&gt;
+
+&lt;p&gt;Inside &lt;code class=&quot;highlighter-rouge&quot;&gt;HomepageTest&lt;/code&gt; there are &lt;code class=&quot;highlighter-rouge&quot;&gt;setUp&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;tearDown&lt;/code&gt; - standard functions that contain prerequisite steps and clean-up steps for the test suite. You might be wondering, why these functions are named in camelCase instead of traditional pythonic snake_case? Well, I was wondering too, and this is what I found on &lt;a href=&quot;https://docs.python.org/3.1/library/unittest.html&quot;&gt;python.org&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The Python unit testing framework, sometimes referred to as “PyUnit,” is a Python language version of JUnit, by Kent Beck and Erich Gamma. JUnit is, in turn, a Java version of Kent’s Smalltalk testing framework. Each is the de facto standard unit testing framework for its respective language.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In this line, the instance of Chrome driver is created:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;webdriver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Chrome&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;I used Chrome driver, but other browsers are also supported (e.g. Firefox, IE etc). If you get &lt;code class=&quot;highlighter-rouge&quot;&gt;selenium.common.exceptions.WebDriverException: Message: 'chromedriver' executable needs to be in PATH&lt;/code&gt; error, you might want to use a solution suggested &lt;a href=&quot;https://stackoverflow.com/questions/29858752/error-message-chromedriver-executable-needs-to-be-available-in-the-path&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;My test suite contains 3 simple tests:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;test_homepage_title()&lt;/code&gt; - it asserts that the site homepage contains my name in the title:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assertIn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Kosenko'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;test_homepage_h1&lt;/code&gt; - this test finds all &lt;code class=&quot;highlighter-rouge&quot;&gt;h1&lt;/code&gt; headers on the page and asserts that there is only one header h1 is found:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;h1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find_elements_by_tag_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'h1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assertEqual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;test_broken_links&lt;/code&gt; - here I am finding all the post links on the homepage (links that have CSS class ‘post-link’), then looping through them and asserting that response status is either 200 or 201:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;links&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find_elements_by_class_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'post-link'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;link&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;links&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requests&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;link&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_attribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'href'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assertTrue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;status_code&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;201&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;except&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Broken link detected {link.get_attribute('href')}: {ex}&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;That is it.&lt;/p&gt;
+
+&lt;p&gt;The main downside of Selenium tests to me is that writing of more complex scenarios is quite time-consuming, especially for those who have different desktop/mobile sites - you will need to write everything twice. Also, it can’t fully protect your website from bugs and should be used together with other kinds of testing. Nevertheless, despite of some downsides it really helps me to sleep better at nights :)&lt;/p&gt;
+
+&lt;p&gt;P.S. Btw, while writing this post and testing my code, I found a broken link on my site’s homepage.&lt;/p&gt;</content><author><name>Natalya Kosenko</name></author><category term="python" /><summary type="html">Have you ever had a situation when a website you are working on got some issues, and you knew about it not from your monitoring dashboards/alerts but from the end users or from your manager? For example, autosuggest stopped working, or crucial for SEO metatags misteriously disappeared from some pages, or a button suddenly became unclickable.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/post_images/2018-09-20-selenium.jpg" /></entry><entry><title type="html">My first programming meetup experience</title><link href="http://localhost:4000/2018-06-29-my-first-programming-meetup-experience" rel="alternate" type="text/html" title="My first programming meetup experience" /><published>2018-06-29T20:55:00+08:00</published><updated>2018-06-29T20:55:00+08:00</updated><id>http://localhost:4000/my-first-programming-meetup-experience</id><content type="html" xml:base="http://localhost:4000/2018-06-29-my-first-programming-meetup-experience">&lt;p&gt;I have a good friend (who I met on a Chinese language course by the way). When she learned about my secret affair with programming, she and her husband told me that I should attend a programming meetup, to meet people who are the same as me love programming. I was telling them: “Yes, I definitely will”. But deep in my mind (or heart) I felt nervous about it: I thought my programming knowledge was not respectable, thus I should not pretend of being a developer and attend any programming events.&lt;/p&gt;
 
 &lt;p&gt;However recently I realised that the ultimate knowledge of something probably does not exist. Even experienced programmers are googling things, not just me. Plus I &lt;a href=&quot;http://www.natalyakosenko.com/2018-05-31-falling-in-love-with-python&quot;&gt;learned a new language (Python)&lt;/a&gt;, which gave me some confidence. So I registered on &lt;a href=&quot;https://www.meetup.com/&quot;&gt;meetup.com&lt;/a&gt; and joined a few programming groups there.&lt;/p&gt;
 
@@ -531,91 +635,4 @@ For example, for &lt;code class=&quot;highlighter-rouge&quot;&gt;Cayman&lt;/code
 &lt;h2 id=&quot;wrap-up&quot;&gt;Wrap up&lt;/h2&gt;
 &lt;p&gt;This post was about getting you started with Jekyll themes, but there’s a lot that you can do if you are willing to spend some time to learn. Take a look at the &lt;a href=&quot;https://jekyllrb.com/docs/home/&quot;&gt;official Jekyll documentation&lt;/a&gt; for more information.&lt;/p&gt;
 
-&lt;p&gt;I hope you found this article useful. If you are trying to switch Jekyll theme using the steps mentioned above and get stuck anywhere, please ask a question in the comments below.&lt;/p&gt;</content><author><name>Natalya Kosenko</name></author><category term="jekyll" /><category term="githubpages" /><summary type="html">A new Jekyll site out of the box uses a default gem-based theme called Minima. However you can choose from one of many custom themes supported by GitHub Pages: official Jekyll themes, as well as open source Jekyll themes hosted on GitHub.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/post_images/2017-12-23-jekyll.png" /></entry><entry><title type="html">How to create a blog using Hexo on GitHub Pages</title><link href="http://localhost:4000/2017-12-16-how-to-create-a-blog-using-hexo-on-gitHub-pages" rel="alternate" type="text/html" title="How to create a blog using Hexo on GitHub Pages" /><published>2017-12-16T17:01:36+08:00</published><updated>2017-12-16T17:01:36+08:00</updated><id>http://localhost:4000/how-to-create-a-blog-using-hexo-on-gitHub-pages</id><content type="html" xml:base="http://localhost:4000/2017-12-16-how-to-create-a-blog-using-hexo-on-gitHub-pages">&lt;p&gt;I was originally planning to create a blog using &lt;a href=&quot;https://github.com/facebookincubator/create-react-app&quot;&gt;Create React App&lt;/a&gt;. It was extremely easy to set up &lt;code class=&quot;highlighter-rouge&quot;&gt;create-react-app&lt;/code&gt;, but “the devil is in the details”. So I decided to use Hexo framework instead, as did not want to spend much time googling stuff and figuring out the details.&lt;/p&gt;
-
-&lt;p&gt;Before I started, I did not have any experience with &lt;code class=&quot;highlighter-rouge&quot;&gt;hexo&lt;/code&gt;, and had no idea about &lt;code class=&quot;highlighter-rouge&quot;&gt;node&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;nvm&lt;/code&gt;. So below an instruction for beginners :)&lt;/p&gt;
-
-&lt;h2 id=&quot;install-git&quot;&gt;Install Git&lt;/h2&gt;
-&lt;p&gt;Install Git if you don’t have it yet (&lt;a href=&quot;https://www.atlassian.com/git/tutorials/install-git&quot;&gt;installation instructions&lt;/a&gt;).&lt;/p&gt;
-
-&lt;h2 id=&quot;install-nvm-node-version-manager&quot;&gt;Install nvm (Node Version Manager)&lt;/h2&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-terminal&quot; data-lang=&quot;terminal&quot;&gt;&lt;span class=&quot;go&quot;&gt;curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;If you get &lt;code class=&quot;highlighter-rouge&quot;&gt;nvm: command not found&lt;/code&gt; after running the install script, try solutions described &lt;a href=&quot;https://github.com/creationix/nvm#installation&quot;&gt;here&lt;/a&gt;. In my case I solved the problem with &lt;code class=&quot;highlighter-rouge&quot;&gt;nvm&lt;/code&gt; by adding this line of code into &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.bash_profile&lt;/code&gt;file:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-terminal&quot; data-lang=&quot;terminal&quot;&gt;&lt;span class=&quot;go&quot;&gt;source ~/.bashrc&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;install-nodejs&quot;&gt;Install Node.js&lt;/h2&gt;
-&lt;p&gt;Hexo framework is powered by &lt;code class=&quot;highlighter-rouge&quot;&gt;node.js&lt;/code&gt;, that is why you need to have &lt;code class=&quot;highlighter-rouge&quot;&gt;node&lt;/code&gt; installed before proceeding with Hexo installation.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-terminal&quot; data-lang=&quot;terminal&quot;&gt;&lt;span class=&quot;go&quot;&gt;nvm install node&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;install-hexo&quot;&gt;Install Hexo&lt;/h2&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-terminal&quot; data-lang=&quot;terminal&quot;&gt;&lt;span class=&quot;go&quot;&gt;npm install -g hexo-cli&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;create-blog&quot;&gt;Create blog&lt;/h2&gt;
-&lt;p&gt;Suppose you want to create your blog in a local folder &lt;code class=&quot;highlighter-rouge&quot;&gt;my-blog&lt;/code&gt;. Run one by one the following commands:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-terminal&quot; data-lang=&quot;terminal&quot;&gt;&lt;span class=&quot;go&quot;&gt;hexo init my-blog
-cd my-blog
-&lt;/span&gt;&lt;span class=&quot;gp&quot;&gt;hexo generate #&lt;/span&gt; to generate the blog
-&lt;span class=&quot;gp&quot;&gt;hexo server #&lt;/span&gt; to start hexo server&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Voila! The blog is ready, check it out at http://localhost:4000/.&lt;/p&gt;
-
-&lt;h2 id=&quot;configure-blog-settings&quot;&gt;Configure blog settings&lt;/h2&gt;
-&lt;p&gt;Now you can start configuring your blog using &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file in the root of your blog’s folder. There are lots of settings can be configured (&lt;a href=&quot;https://hexo.io/docs/configuration.html&quot;&gt;read more about it&lt;/a&gt;). To start with, you can configure some personal information as did I:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# Site&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Natalya Kosenko's Blog&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;subtitle&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;author&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Natalya Kosenko&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;language&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;en&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;timezone&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Asia/Singapore&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;change-theme&quot;&gt;Change theme&lt;/h2&gt;
-&lt;p&gt;Now it is time to beautify your blog. You can choose one of a few dozens free themes available &lt;a href=&quot;https://hexo.io/themes/&quot;&gt;here&lt;/a&gt;. My choice was &lt;code class=&quot;highlighter-rouge&quot;&gt;cactus-white&lt;/code&gt; that is based on a &lt;a href=&quot;https://github.com/probberechts/cactus-dark&quot;&gt;cactus-dark&lt;/a&gt; theme. Below are a few commands you need to run one by one in the Terminal in order to switch theme from default one to the &lt;code class=&quot;highlighter-rouge&quot;&gt;cactus-white&lt;/code&gt;:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-terminal&quot; data-lang=&quot;terminal&quot;&gt;&lt;span class=&quot;go&quot;&gt;git clone git@github.com:sergodeeva/cactus-white.git themes/cactus-white
-npm install hexo-pagination --save&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;After you installed a new theme, you need to change the &lt;code class=&quot;highlighter-rouge&quot;&gt;theme&lt;/code&gt; property in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# theme: landscape&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cactus-white&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;To see the changes at http://localhost:4000/, you need to re-generate blog by running &lt;code class=&quot;highlighter-rouge&quot;&gt;hexo generate&lt;/code&gt;, and then restart the hexo server (stop it and then run &lt;code class=&quot;highlighter-rouge&quot;&gt;hexo server&lt;/code&gt;).&lt;/p&gt;
-
-&lt;h2 id=&quot;write-a-new-post&quot;&gt;Write a new post&lt;/h2&gt;
-&lt;p&gt;To create a new post or a new page, you can use the following commands:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-terminal&quot; data-lang=&quot;terminal&quot;&gt;&lt;span class=&quot;gp&quot;&gt;hexo new post &amp;lt;title&amp;gt;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# to create a new post&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;hexo new page &amp;lt;title&amp;gt;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# to create a new page&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;hexo new draft &amp;lt;title&amp;gt;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# to create a new draft&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;hexo new post &quot;Hello world&quot; #&lt;/span&gt; example&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;A file with .md extension will be created in a &lt;code class=&quot;highlighter-rouge&quot;&gt;source&lt;/code&gt; folder. You can write your post using &lt;a href=&quot;https://daringfireball.net/projects/markdown/syntax&quot;&gt;markdown&lt;/a&gt; - lightweight markup language with plain text formatting syntax.&lt;/p&gt;
-
-&lt;h2 id=&quot;deploy-to-github-pages&quot;&gt;Deploy to GitHub Pages&lt;/h2&gt;
-&lt;p&gt;Make sure you have created a GitHub repository with a name &lt;code class=&quot;highlighter-rouge&quot;&gt;username.github.io&lt;/code&gt;. For example, my repository is &lt;code class=&quot;highlighter-rouge&quot;&gt;sergodeeva.github.io&lt;/code&gt;.
-Install hexo deployer plugin:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-terminal&quot; data-lang=&quot;terminal&quot;&gt;&lt;span class=&quot;go&quot;&gt;npm install hexo-deployer-git --save&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Once the plugin is installed, change deployment settings in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;file (replace ‘username’ with your GitHub username):&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;na&quot;&gt;deploy&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;git&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;repo&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;git@github.com:username/username.github.io.git&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;branch&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Deploy the blog to GitHub pages using this command:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-terminal&quot; data-lang=&quot;terminal&quot;&gt;&lt;span class=&quot;gp&quot;&gt;hexo d -g #&lt;/span&gt; shortcut &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;hexo generate&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; and &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;hexo deploy&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Done, your blog is now available at &lt;code class=&quot;highlighter-rouge&quot;&gt;http://username.github.io&lt;/code&gt; page.&lt;/p&gt;
-
-&lt;p&gt;The whole process took me a few hours (90% of that time I spent choosing a blog theme).&lt;/p&gt;</content><author><name>Natalya Kosenko</name></author><category term="hexo" /><category term="githubpages" /><summary type="html">I was originally planning to create a blog using Create React App. It was extremely easy to set up create-react-app, but “the devil is in the details”. So I decided to use Hexo framework instead, as did not want to spend much time googling stuff and figuring out the details.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/post_images/2017-12-16-hexo.png" /></entry></feed>
+&lt;p&gt;I hope you found this article useful. If you are trying to switch Jekyll theme using the steps mentioned above and get stuck anywhere, please ask a question in the comments below.&lt;/p&gt;</content><author><name>Natalya Kosenko</name></author><category term="jekyll" /><category term="githubpages" /><summary type="html">A new Jekyll site out of the box uses a default gem-based theme called Minima. However you can choose from one of many custom themes supported by GitHub Pages: official Jekyll themes, as well as open source Jekyll themes hosted on GitHub.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/post_images/2017-12-23-jekyll.png" /></entry></feed>
