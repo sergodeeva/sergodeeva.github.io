@@ -4,7 +4,7 @@
   date:   2018-09-20 19:59:00 +0800
   tags: python
   description: "How to use Selenium & Python for frontend testing (with code examples)"
-  image: "/assets/post_images/2018-09-20-selenium.jpg"
+  image: "/assets/post_images/2018-09-20-software-bugs.jpg"
 ---
 
 Have you ever had a situation when a website you are working on got some issues, and you knew about it not from your monitoring dashboards/alerts but from the end users or from your manager? For example, autosuggest stopped working, or crucial for SEO metatags misteriously disappeared from some pages, or a button suddenly became unclickable.
