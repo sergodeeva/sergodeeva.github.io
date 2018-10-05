@@ -16,7 +16,7 @@ Well, I am not so sure any more.
 Here are some sterotypes:
 
 ## If a PM knows how to code, he/she can estimate what feature can be done easily and what feature will take time
-Ok, let's say PM knows that the feature A should take 1 day and the feature B should take 7 days. Means that the PM can't be fooled by the engineers who were planning to spent 3 days on the feature A and 15 days on the feature B. But what is the use of this knowledge? If the Engineering team is strong and motivated, there won't be such overestimation happen on the first place. But if the Engineering team is weak, they might even spend 5 days on the feature A and 20 days on B, regardless of the PM's knowledge.
+Ok, let's say PM knows that the feature A should take 1 day and the feature B should take 7 days. Means that the PM can't be fooled by the engineers who were planning to spend 3 days on the feature A and 15 days on the feature B. But what is the use of this knowledge? If the Engineering team is strong and motivated, there won't be such overestimation happen on the first place. But if the Engineering team is weak, they might even spend 5 days on the feature A and 20 days on B, regardless of the PM's knowledge.
 
 Ideally, PM should not even participate in the feature estimation, the Engineering team is the authority on estimating how much time the feature will take.
 
@@ -30,8 +30,8 @@ Well, this might be true. But it's not about knowledge of coding in particular, 
 The statement is true. As a PM-coder I am a big advocate of keeping the codebase in good conditions. However if the engineering culture in the team is not that advanced, having a PM with the high coding standards won't help much.
 
 ## PM with the knowledge of programming can better understand engineers
-Nothing can be said to refute this fact. Personally, I uderstand developers with every fiber of my being. I can see when they stuck, when they procrastinate because the task is too complex and needs to be split into simpler steps, when they procrastinate because they do not like the feature to be on the roadmap. I can feel their pain when they resolving Git merging conflicts. When they struggling to find a solution in Google. When they bored, tired or simply hungry.
+Nothing can be said to refute this fact. Personally, I uderstand developers with every fiber of my being. I can see when they stuck, when they procrastinate because the task is too complex and needs to be split into simpler steps, when they procrastinate because they do not like the feature to be on the roadmap. I can feel their pain when they resolving Git merging conflicts. When they struggling to find a solution on Google. When they bored, tired or simply hungry.
 
 But so what? How does the fact that I understand engineers help me in my PM's work? This part I have not figured out yet. I feel like it's helpful though :)
 
-As a conclusion, I think that coding knowledge is be useful for PMs, but it is not essential. You can be a great PM without any knowledge of programming. However, programming knowledge can compensate the lack of other skills (e.g communication skills).
+As a conclusion, I think that coding knowledge is useful for PMs, but it is not essential. You can be a great PM without deep knowledge of programming. However, programming knowledge can compensate the lack of other skills (e.g communication skills).
