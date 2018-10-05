@@ -4,7 +4,7 @@ title: About me
 permalink: /about
 ---
 
-![Natalya Kosenko](/assets/kosenko.jpg)
+![Natalya Kosenko](/assets/india_team.jpg)
 
 Hi, my name is Natalya. Originally from Russia, I've been working in Southeast Asia since 2010: Thailand, then Singapore plus occasional work trips to Indonesia and India. 
 
