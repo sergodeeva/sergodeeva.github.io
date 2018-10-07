@@ -17,9 +17,16 @@ Some of my friends were recommending me distance education, but I prefer traditi
 
 To be honest, I liked the programme in NUS more as it's pure computer science, plus the NUS campus is closer to my house. However (and here I'm being quite irrational) eventually I chose NTU, as the NTU staff I talked to via email was nicer. Plus NTU was ok with the translation of my Bachelor's transcript certified by the Russian embassy in Singapore, whereas NUS required translated transcript to be sent by my Russian university (which I graduated from almost 20 years ago by the way).
 
-So after some considerations I decided to apply for Master's in Information Systems programme in Nanyang Technological University.
+So after some considerations I decided to apply for Master's in Information Systems in Nanyang Technological University.
 
-I won't write here about admission procedure and requirements, if you interested you can read more about it on the [university website](http://www.wkwsci.ntu.edu.sg/programmes/ProspectiveStudents/Prospective%20Masters%20and%20PhD%20students/Programmes%20by%20Coursework/MSc%20in%20Information%20Systems/Pages/Home.aspx){:target="_blank"}.
+## Required documents and fees
+I won't go too deep into details about admission procedure and requirements, if you interested you can read more about it on the [university website](http://www.wkwsci.ntu.edu.sg/programmes/ProspectiveStudents/Prospective%20Masters%20and%20PhD%20students/Programmes%20by%20Coursework/MSc%20in%20Information%20Systems/Pages/Home.aspx){:target="_blank"}. Will just mention that the following documents were required:
+- Bachelor degree in CS or related discipline (e.g. Math).
+- English test IELTS not less than 6.5.
+- Essay explaining why I want to study, and a recommendation letter from my employer.
+- Employment pass (or any other pass that allows me to stay in Singapore - mandatory for a part time programme).
+
+That’s it I think. The fee is about 20k SGD per year for a part time, but I applied for the Government subsidy 50% (if I get the subsidy, I will need to work in Singapore for 3 years after graduation).
 
 ## My first impressions of studying at NTU
 So here I am, a student again, after XX years.
