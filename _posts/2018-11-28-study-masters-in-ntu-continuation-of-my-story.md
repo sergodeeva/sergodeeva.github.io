@@ -7,14 +7,14 @@
   image: "/assets/post_images/2018-11-28-first-semester.jpg"
 ---
 
-In the [previous post](http://www.natalyakosenko.com/2018-10-06-what-it-feels-like-to-study-masters-in-ntu-singapore) I was telling a story about how I started to study masters in Nanyang Technological University. Today I am done with my first semester exams, and feel super happy about it. Decided to share about my first semester and exam experience.
+[Earlier](http://www.natalyakosenko.com/2018-10-06-what-it-feels-like-to-study-masters-in-ntu-singapore) I was telling a story about how I started to study masters in Nanyang Technological University. Today I am done with my first semester exams, and feel super happy about it. Decided to share about my first semester and exam experience.
 
 ## About group assignments
 I was talking about group assignments in my previous post, but still want to repeat myself: group assignments were the biggest shock of my first semester. It really took me time to accept the idea of doing one assignment with a group of other people and getting the same grade.
 
 At the beginning I felt like this: Imagine you need to cook 2-eggs omelette, and you need to do it together with 4-5 other people and later write a report about how you cooked the omelette. So kitchen is full of people, someone says: let's cook scrambled eggs, another says: no, we supposed to cook boiled eggs. Someone else says he never tried eggs before. Another person adds salt, while salt was already added...
 
-But in reality, at the end we had 5 people, who learned how to cook a perfect omlette. One of them shared with others the recipee of omelette with cheese, another one revealed the secret of adding chili. A person who never tried eggs before became an eggs fan. I really enjoyed it at the end, especially Programming assignment, as at the end we were functioning like a real (and good one) development team.
+But in reality, at the end we had 5 people, who learned how to cook a perfect omelette. One of them shared with others the recipe of omelette with cheese, another one revealed the secret of adding chili. A person who never tried eggs before became an eggs fan. I really enjoyed it at the end, especially Programming assignment, as at the end we were functioning like a real (and good one) development team.
 
 So, group assignments were the biggest disappointment and the biggest enjoyment of my first semester.
 
@@ -23,12 +23,12 @@ I took 3 courses this semester: Programming, Data Mining and Information Archite
 
 The hardest subject for me was __Information Architecture & Design__, as it's not something precise like mathematics. For many topics we discussed in the class there was no 100% wrong or right answer. For example: "In your opinion, what are the benefits of ethnographic approach in conducting user research?"
 
-My Design class (find me):
+My Design class (see if you can find me):
 <img src="{{ site.url }}/assets/post_images/2018-11-28-first-semester.jpg" width="640" style="display:block"/>
 
 In the __Programming__ course, we learned the whole bunch of stuff, everything just a little bit: Java, JavaScript, jQuery, AJAX, various CSS libraries, databases, etc. No modern frameworks, no popular programming languages, but still I enjoyed it a lot.
 
-__Data Mining__ course was full of mathematics, which was forgotten by me completely (even though my million-years-ago Bachelor degree was in Mathematics). So now I remember again not only what is cosine or logarythm, but also Bayes' theorem and other stuff. The best part of this course was practical assignment - write a classification model using gradient boosting algorithm. After that assignment I got inspiration and some interest in ML, even joined [PyData Singapore group](https://www.meetup.com/PyData-SG/) on meetup.sg.
+__Data Mining__ course was full of mathematics, which was forgotten by me completely (even though my million-year-ago Bachelor degree was in Mathematics). So now I remember again not only what is cosine or logarithm, but also Bayes' theorem and other stuff. The best part of this course was practical assignment - write a classification model using gradient boosting algorithm. After that assignment I got inspiration and some interest in ML, even joined [PyData Singapore group](https://www.meetup.com/PyData-SG/) on meetup.sg.
 
 ## About the exams
 Finally, about the exams. I feel the lecturers' attitude towards exams is quite different in NTU compared to my university in Russia (Novosibirsk State university). From the day one professors were telling us about the exams. Like: pay attention to this chapter, it will be on the exams. Or: remember, on the exam you need to write at least two paragraphs about this topic etc.
