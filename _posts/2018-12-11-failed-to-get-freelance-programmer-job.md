@@ -15,7 +15,7 @@ Recently I decided that if I keep going with the flow, I will probably never bec
 
 Although I touched many different technologies over the past 2 years (Java, Ruby, Python, JS, ReactJS/NextJS, a bit of Devops, this and that), but still the most confident I am in my Python skills. So my plan was to find some Python-related part-time projects, ideally writing web scrapers, processing data, etc.
 
-My brother recommended me [Upwork](https://www.upwork.com), where I registered yesterday, filled in my profile and passed the Python & English tests there. This is what I wrote in my self-description:
+My brother recommended me <a href="https://www.upwork.com" target="_blank">Upwork</a>, where I registered yesterday, filled in my profile and passed the Python & English tests there. This is what I wrote in my self-description:
 
 > Hi, I am a part-time Python developer, specialized in Web scraping. I have a full time office job (Product Manager in Mobile development team). The reason I am here is to have fun (as I love programming) and at the same time to help you with your Python-related tasks:
 > - Build web scrapers
@@ -33,4 +33,4 @@ The answer I received today was "We have reviewed your application to join, and 
 
 I was really angry at first. I thought, how can you judge my ability to code if you never even saw my code? There was no real coding test, just multiple choice theory test which I passed. My colleague laughed at me, said I should have written some made-up employment history, and also should have mentioned more technologies in self-description.
 
-So the whole evening I felt some bitterness inside, but now calmed down. First of all, there are already too many freelance programmers in Upwork much more skillful than me, why would Upwork want even more programmers? Secondly, it was only a single attempt, still can try again. Lastly, I remembered stories of my talented friends/colleages who were rejected for jobs. Even thought of Jack Ma who did not get waiter's job in KFC. After that completely calmed down, no reason to be upset at all!
+So the whole evening I felt some bitterness inside, but now calmed down. First of all, there are already too many freelance programmers in Upwork much more skillful than me, why would Upwork want even more programmers? Secondly, it was only a single attempt, still can try again. Lastly, I remembered stories of my talented friends/colleages who were rejected for jobs. Even thought of Jack Ma who did not get waiter's job in KFC. After that completely calmed down, no reason to be upset at all :)
