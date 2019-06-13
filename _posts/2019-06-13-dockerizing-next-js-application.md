@@ -2,7 +2,7 @@
 layout: post
 title: "Dockerizing Next.js application"
 date: 2019-06-13 23:15:00 +0800
-tags: coding, devops
+tags: coding devops
 description: "How to get a Next.js application into a Docker container"
 image: "/assets/post_images/2019-06-13-docker.png"
 ---
@@ -14,7 +14,7 @@ Yesterday I tryied to dockerize my next.js application and was surprised how eas
 ## Install Docker
 
 You can download Docker installer from the [official site](https://docs.docker.com/install/). Installation went smooth on my Mac machine, however I got into minor issues when was doing the same on Linux CentOS.
-Here are installation steps for CentOS:
+Here are the installation steps for CentOS:
 
 ```
 sudo yum install -y yum-utils device-mapper-persistent-data lvm2
@@ -25,7 +25,7 @@ sudo systemctl enable docker.service
 sudo systemctl start docker.service
 ```
 
-If there is any error during `docker-ce` installation:
+If there is an error during `docker-ce` installation, this command might help:
 
 ```
 sudo yum install http://vault.centos.org/centos/7.3.1611/extras/x86_64/Packages/container-selinux-2.9-4.el7.noarch.rpm
@@ -76,11 +76,12 @@ This is the last step. To run Docker container type:
 docker run -d -p 3000:3000 my_app:latest
 ```
 
-After that your application will be available at localhost:3000. Easy, right?
+After that your application will be available at localhost:3000.
+Easy, right?
 
 ## A few useful Docker commands
 
-To wrap it up, here are a few Docker commands that I found useful during setup:
+To wrap it up, here are few Docker commands that I found useful during setup:
 
 ```
 docker ps # to see a list of running containers
