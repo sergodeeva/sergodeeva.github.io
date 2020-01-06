@@ -30,7 +30,7 @@ From quite a few programmers I heard that they never finished reading any progra
 - [Practical Object-Oriented Design in Ruby](https://www.sandimetz.com/products/) by Sandi Metz
 - [Learn to Program](https://pine.fm/LearnToProgram/) by Chris Pine
 
-I also took a several courses in [Code School](https://www.codeschool.com/users/sergodeeva) - mostly courses related to GitHub, MySQL and Ruby.
+I also took a several courses in [Code School](https://www.codeschool.com/users/sergodeeva) - mostly courses related to Ruby, MySQL and Git.
 ![Code Shool cources]({{ site.url }}/assets/post_images/2018-01-06-codeschool.png)
 
 ## First hardship
