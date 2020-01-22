@@ -4,7 +4,7 @@ title: "My dream to work as a developer came true"
 date: 2020-01-22 21:03:00 +0800
 tags: coding
 description: "It took me 3 years"
-image: "/assets/post_images/2020-01-22-candies.jpg"
+image: "/assets/post_images/2020-01-22-candies-chokolate.jpg"
 ---
 
 Two years ago I wrote a post about [how I learned to code at the age of 38](http://www.natalyakosenko.com/2018-01-06-how-i-learned-to-code-at-the-age-of-38). Back then I was full of doubts if I ever will be able to work as a developer. I felt like I was trying to catch a train that left twenty years ago. But at the same time I could not see my life without programming any more.
